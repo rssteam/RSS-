@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.reader.rss.mapper.SubscribeMapper">
+  <resultMap id="BaseResultMap" type="com.reader.rss.pojo.Subscribe">
+    <constructor>
+      <idArg column="sub_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="site_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="group_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="account_id" javaType="java.lang.String" jdbcType="VARCHAR" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    sub_id, site_id, group_id, account_id
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from subscribe
+    where sub_id = #{subId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from subscribe
+    where sub_id = #{subId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.reader.rss.pojo.Subscribe">
+    insert into subscribe (sub_id, site_id, group_id, 
+      account_id)
+    values (#{subId,jdbcType=INTEGER}, #{siteId,jdbcType=INTEGER}, #{groupId,jdbcType=INTEGER}, 
+      #{accountId,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.reader.rss.pojo.Subscribe">
+    insert into subscribe
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="subId != null">
+        sub_id,
+      </if>
+      <if test="siteId != null">
+        site_id,
+      </if>
+      <if test="groupId != null">
+        group_id,
+      </if>
+      <if test="accountId != null">
+        account_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="subId != null">
+        #{subId,jdbcType=INTEGER},
+      </if>
+      <if test="siteId != null">
+        #{siteId,jdbcType=INTEGER},
+      </if>
+      <if test="groupId != null">
+        #{groupId,jdbcType=INTEGER},
+      </if>
+      <if test="accountId != null">
+        #{accountId,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.reader.rss.pojo.Subscribe">
+    update subscribe
+    <set>
+      <if test="siteId != null">
+        site_id = #{siteId,jdbcType=INTEGER},
+      </if>
+      <if test="groupId != null">
+        group_id = #{groupId,jdbcType=INTEGER},
+      </if>
+      <if test="accountId != null">
+        account_id = #{accountId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where sub_id = #{subId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.reader.rss.pojo.Subscribe">
+    update subscribe
+    set site_id = #{siteId,jdbcType=INTEGER},
+      group_id = #{groupId,jdbcType=INTEGER},
+      account_id = #{accountId,jdbcType=VARCHAR}
+    where sub_id = #{subId,jdbcType=INTEGER}
+  </update>
+</mapper>

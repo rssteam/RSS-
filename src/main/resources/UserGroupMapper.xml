@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.reader.rss.mapper.UserGroupMapper">
+  <resultMap id="BaseResultMap" type="com.reader.rss.pojo.UserGroup">
+    <constructor>
+      <idArg column="group_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="group_title" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="account_id" javaType="java.lang.String" jdbcType="VARCHAR" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    group_id, group_title, account_id
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from usergroup
+    where group_id = #{groupId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from usergroup
+    where group_id = #{groupId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.reader.rss.pojo.UserGroup">
+    insert into usergroup (group_id, group_title, account_id
+      )
+    values (#{groupId,jdbcType=INTEGER}, #{groupTitle,jdbcType=VARCHAR}, #{accountId,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.reader.rss.pojo.UserGroup">
+    insert into usergroup
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="groupId != null">
+        group_id,
+      </if>
+      <if test="groupTitle != null">
+        group_title,
+      </if>
+      <if test="accountId != null">
+        account_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="groupId != null">
+        #{groupId,jdbcType=INTEGER},
+      </if>
+      <if test="groupTitle != null">
+        #{groupTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="accountId != null">
+        #{accountId,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.reader.rss.pojo.UserGroup">
+    update usergroup
+    <set>
+      <if test="groupTitle != null">
+        group_title = #{groupTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="accountId != null">
+        account_id = #{accountId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where group_id = #{groupId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.reader.rss.pojo.UserGroup">
+    update usergroup
+    set group_title = #{groupTitle,jdbcType=VARCHAR},
+      account_id = #{accountId,jdbcType=VARCHAR}
+    where group_id = #{groupId,jdbcType=INTEGER}
+  </update>
+</mapper>
