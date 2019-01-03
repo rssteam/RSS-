@@ -1,0 +1,297 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:wfw="http://wellformedweb.org/CommentAPI/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:sy="http://purl.org/rss/1.0/modules/syndication/" xmlns:slash="http://purl.org/rss/1.0/modules/slash/" version="2.0">
+
+<channel>
+​	<title>煎蛋</title>
+​	
+	<link>http://jandan.net</link>
+	<description>地球上没有新鲜事</description>
+	<lastBuildDate>Mon, 24 Dec 2018 02:00:11 +0000</lastBuildDate>
+	<language>en-US</language>
+	<sy:updatePeriod>hourly</sy:updatePeriod>
+	<sy:updateFrequency>1</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=4.8</generator>
+	<atom10:link xmlns:atom10="http://www.w3.org/2005/Atom" rel="self" type="application/rss+xml" href="http://feeds.feedburner.com/jandan" /><feedburner:info xmlns:feedburner="http://rssnamespace.org/feedburner/ext/1.0" uri="jandan" /><atom10:link xmlns:atom10="http://www.w3.org/2005/Atom" rel="hub" href="http://pubsubhubbub.appspot.com/" /><xhtml:meta xmlns:xhtml="http://www.w3.org/1999/xhtml" name="robots" content="noindex" /><meta xmlns="http://pipes.yahoo.com" name="pipes" content="noprocess" /><image><link>http://jandan.net/</link><url>http://i129.photobucket.com/albums/p240/roveme/jandan/20100622160133046.gif</url><title>煎蛋 - digg digest</title></image><item>
+		<title>福布斯：2018财富大赢家</title>
+		<link>http://jandan.net/2018/12/24/biggest-billionaire.html</link>
+		<comments>http://jandan.net/2018/12/24/biggest-billionaire.html#comments</comments>
+		<pubDate>Mon, 24 Dec 2018 02:00:11 +0000</pubDate>
+		<dc:creator><![CDATA[majer]]></dc:creator>
+				<category><![CDATA[NEWS]]></category>
+		<category><![CDATA[爷有钱]]></category>
+	
+		<guid isPermaLink="false">http://x.jandan.net/?p=100615</guid>
+		<description><![CDATA[快看看自己上榜了没有]]></description>
+		<wfw:commentRss>http://jandan.net/2018/12/24/biggest-billionaire.html/feed</wfw:commentRss>
+		<slash:comments>8</slash:comments>
+		</item>
+		<item>
+		<title>新发现两栖生物将被命名为“唐纳德特朗普”</title>
+		<link>http://jandan.net/2018/12/24/amphibian-named.html</link>
+		<comments>http://jandan.net/2018/12/24/amphibian-named.html#comments</comments>
+		<pubDate>Mon, 24 Dec 2018 01:00:09 +0000</pubDate>
+		<dc:creator><![CDATA[majer]]></dc:creator>
+				<category><![CDATA[NEWS]]></category>
+		<category><![CDATA[大丈夫]]></category>
+	
+		<guid isPermaLink="false">http://x.jandan.net/?p=100601</guid>
+		<description><![CDATA[“蚓螈在拉丁语中意即‘瞎的’，恰好反映出特朗普在气候变化问题上的战略视角”。]]></description>
+		<wfw:commentRss>http://jandan.net/2018/12/24/amphibian-named.html/feed</wfw:commentRss>
+		<slash:comments>13</slash:comments>
+		</item>
+		<item>
+		<title>美国人的睡得比13年前少</title>
+		<link>http://jandan.net/2018/12/24/sleeping-less.html</link>
+		<comments>http://jandan.net/2018/12/24/sleeping-less.html#comments</comments>
+		<pubDate>Mon, 24 Dec 2018 00:00:04 +0000</pubDate>
+		<dc:creator><![CDATA[majer]]></dc:creator>
+				<category><![CDATA[NEWS]]></category>
+		<category><![CDATA[健康]]></category>
+	
+		<guid isPermaLink="false">http://x.jandan.net/?p=100613</guid>
+		<description><![CDATA[全是现代科技的锅：三分之一的美国人每晚睡眠时间不足6小时]]></description>
+		<wfw:commentRss>http://jandan.net/2018/12/24/sleeping-less.html/feed</wfw:commentRss>
+		<slash:comments>6</slash:comments>
+		</item>
+		<item>
+		<title>2018最重要的照片：最后的雄性北方白犀牛</title>
+		<link>http://jandan.net/2018/12/23/white-rhino.html</link>
+		<comments>http://jandan.net/2018/12/23/white-rhino.html#comments</comments>
+		<pubDate>Sun, 23 Dec 2018 14:12:31 +0000</pubDate>
+		<dc:creator><![CDATA[投稿]]></dc:creator>
+				<category><![CDATA[NEWS]]></category>
+		<category><![CDATA[环保]]></category>
+	
+		<guid isPermaLink="false">http://x.jandan.net/?p=100625</guid>
+		<description><![CDATA[苏丹和它的种群如今只存在于照片之中。]]></description>
+		<wfw:commentRss>http://jandan.net/2018/12/23/white-rhino.html/feed</wfw:commentRss>
+		<slash:comments>7</slash:comments>
+		</item>
+		<item>
+		<title>为什么黑天是“黑”天</title>
+		<link>http://jandan.net/2018/12/23/sky-dark.html</link>
+		<comments>http://jandan.net/2018/12/23/sky-dark.html#comments</comments>
+		<pubDate>Sun, 23 Dec 2018 09:00:37 +0000</pubDate>
+		<dc:creator><![CDATA[行走的五花肉]]></dc:creator>
+				<category><![CDATA[NEWS]]></category>
+		<category><![CDATA[天文]]></category>
+	
+		<guid isPermaLink="false">http://x.jandan.net/?p=100598</guid>
+		<description><![CDATA[这才叫穿越，这才是一眼万年……]]></description>
+		<wfw:commentRss>http://jandan.net/2018/12/23/sky-dark.html/feed</wfw:commentRss>
+		<slash:comments>23</slash:comments>
+		</item>
+		<item>
+		<title>一个产品「流畅易用」，到底是好还是不好？</title>
+		<link>http://jandan.net/2018/12/23/tech-friction.html</link>
+		<comments>http://jandan.net/2018/12/23/tech-friction.html#comments</comments>
+		<pubDate>Sun, 23 Dec 2018 08:00:35 +0000</pubDate>
+		<dc:creator><![CDATA[Ayeshanyoga]]></dc:creator>
+				<category><![CDATA[NEWS]]></category>
+		<category><![CDATA[Tech]]></category>
+		<category><![CDATA[冷新闻]]></category>
+		<category><![CDATA[高科技]]></category>
+	
+		<guid isPermaLink="false">http://x.jandan.net/?p=100604</guid>
+		<description><![CDATA[七年前，初生牛犊不怕虎的 Mark Zuckerberg 在Facebook一年一度的开发者大会上宣布了Facebook的一项重要改变。]]></description>
+		<wfw:commentRss>http://jandan.net/2018/12/23/tech-friction.html/feed</wfw:commentRss>
+		<slash:comments>10</slash:comments>
+		</item>
+		<item>
+		<title>科学家发现一条新的感受疼痛的神经通路</title>
+		<link>http://jandan.net/2018/12/23/pain-pathway.html</link>
+		<comments>http://jandan.net/2018/12/23/pain-pathway.html#comments</comments>
+		<pubDate>Sun, 23 Dec 2018 07:00:33 +0000</pubDate>
+		<dc:creator><![CDATA[行走的五花肉]]></dc:creator>
+				<category><![CDATA[NEWS]]></category>
+		<category><![CDATA[走进科学]]></category>
+	
+		<guid isPermaLink="false">http://x.jandan.net/?p=100608</guid>
+		<description><![CDATA[我也想问问小白鼠：你舔完伤口就不会疼了么？]]></description>
+		<wfw:commentRss>http://jandan.net/2018/12/23/pain-pathway.html/feed</wfw:commentRss>
+		<slash:comments>3</slash:comments>
+		</item>
+		<item>
+		<title>为什么袭击澳洲的罕见冰雹形状怪异？</title>
+		<link>http://jandan.net/2018/12/23/different-sort.html</link>
+		<comments>http://jandan.net/2018/12/23/different-sort.html#comments</comments>
+		<pubDate>Sun, 23 Dec 2018 06:00:32 +0000</pubDate>
+		<dc:creator><![CDATA[majer]]></dc:creator>
+				<category><![CDATA[NEWS]]></category>
+		<category><![CDATA[走进科学]]></category>
+	
+		<guid isPermaLink="false">http://x.jandan.net/?p=100599</guid>
+		<description><![CDATA[降生于风暴之中的冰霜婴儿看起来像是花椰菜]]></description>
+		<wfw:commentRss>http://jandan.net/2018/12/23/different-sort.html/feed</wfw:commentRss>
+		<slash:comments>12</slash:comments>
+		</item>
+		<item>
+		<title>那些寄给圣诞老人的信最后都去哪了？</title>
+		<link>http://jandan.net/2018/12/23/letters-to-santa.html</link>
+		<comments>http://jandan.net/2018/12/23/letters-to-santa.html#comments</comments>
+		<pubDate>Sun, 23 Dec 2018 05:00:30 +0000</pubDate>
+		<dc:creator><![CDATA[Freez Sun]]></dc:creator>
+				<category><![CDATA[NEWS]]></category>
+		<category><![CDATA[小贴士]]></category>
+	
+		<guid isPermaLink="false">http://x.jandan.net/?p=100606</guid>
+		<description><![CDATA[不管过不过圣诞节，让孩子开心一下总是没错的。]]></description>
+		<wfw:commentRss>http://jandan.net/2018/12/23/letters-to-santa.html/feed</wfw:commentRss>
+		<slash:comments>12</slash:comments>
+		</item>
+		<item>
+		<title>十万个冷知识(四)</title>
+		<link>http://jandan.net/2018/12/23/factslides-3.html</link>
+		<comments>http://jandan.net/2018/12/23/factslides-3.html#comments</comments>
+		<pubDate>Sun, 23 Dec 2018 04:00:27 +0000</pubDate>
+		<dc:creator><![CDATA[HTT110]]></dc:creator>
+				<category><![CDATA[NEWS]]></category>
+		<category><![CDATA[小贴士]]></category>
+	
+		<guid isPermaLink="false">http://x.jandan.net/?p=100602</guid>
+		<description><![CDATA[Did you known ？]]></description>
+		<wfw:commentRss>http://jandan.net/2018/12/23/factslides-3.html/feed</wfw:commentRss>
+		<slash:comments>28</slash:comments>
+		</item>
+		<item>
+		<title>为啥火箭发射总推迟</title>
+		<link>http://jandan.net/2018/12/23/rocket-launch-2.html</link>
+		<comments>http://jandan.net/2018/12/23/rocket-launch-2.html#comments</comments>
+		<pubDate>Sun, 23 Dec 2018 03:00:25 +0000</pubDate>
+		<dc:creator><![CDATA[HW]]></dc:creator>
+				<category><![CDATA[NEWS]]></category>
+		<category><![CDATA[走进科学]]></category>
+	
+		<guid isPermaLink="false">http://x.jandan.net/?p=100591</guid>
+		<description><![CDATA[天气原因，偶尔也有别的因素]]></description>
+		<wfw:commentRss>http://jandan.net/2018/12/23/rocket-launch-2.html/feed</wfw:commentRss>
+		<slash:comments>12</slash:comments>
+		</item>
+		<item>
+		<title>除了礼物包装纸，这12种包装法也很酷</title>
+		<link>http://jandan.net/2018/12/23/wrapping-paper-3.html</link>
+		<comments>http://jandan.net/2018/12/23/wrapping-paper-3.html#comments</comments>
+		<pubDate>Sun, 23 Dec 2018 02:00:22 +0000</pubDate>
+		<dc:creator><![CDATA[HTT110]]></dc:creator>
+				<category><![CDATA[NEWS]]></category>
+		<category><![CDATA[小贴士]]></category>
+	
+		<guid isPermaLink="false">http://x.jandan.net/?p=100597</guid>
+		<description><![CDATA[许多东西都可以用作礼物的精美包装]]></description>
+		<wfw:commentRss>http://jandan.net/2018/12/23/wrapping-paper-3.html/feed</wfw:commentRss>
+		<slash:comments>10</slash:comments>
+		</item>
+		<item>
+		<title>西班牙推出不会喝醉的「葡萄酒」</title>
+		<link>http://jandan.net/2018/12/23/flavored-water.html</link>
+		<comments>http://jandan.net/2018/12/23/flavored-water.html#comments</comments>
+		<pubDate>Sun, 23 Dec 2018 01:00:19 +0000</pubDate>
+		<dc:creator><![CDATA[HTT110]]></dc:creator>
+				<category><![CDATA[NEWS]]></category>
+		<category><![CDATA[创意产品]]></category>
+	
+		<guid isPermaLink="false">http://x.jandan.net/?p=100600</guid>
+		<description><![CDATA[既可以享受葡萄酒味道，也不必担心喝醉或长胖]]></description>
+		<wfw:commentRss>http://jandan.net/2018/12/23/flavored-water.html/feed</wfw:commentRss>
+		<slash:comments>14</slash:comments>
+		</item>
+		<item>
+		<title>十万个冷知识(三)</title>
+		<link>http://jandan.net/2018/12/22/factslides-2.html</link>
+		<comments>http://jandan.net/2018/12/22/factslides-2.html#comments</comments>
+		<pubDate>Sat, 22 Dec 2018 10:00:54 +0000</pubDate>
+		<dc:creator><![CDATA[HTT110]]></dc:creator>
+				<category><![CDATA[NEWS]]></category>
+		<category><![CDATA[小贴士]]></category>
+	
+		<guid isPermaLink="false">http://x.jandan.net/?p=100588</guid>
+		<description><![CDATA[纹身笔是爱迪生发明的]]></description>
+		<wfw:commentRss>http://jandan.net/2018/12/22/factslides-2.html/feed</wfw:commentRss>
+		<slash:comments>22</slash:comments>
+		</item>
+		<item>
+		<title>Facebook对单个用户有多大价值？</title>
+		<link>http://jandan.net/2018/12/22/facebook-cost.html</link>
+		<comments>http://jandan.net/2018/12/22/facebook-cost.html#comments</comments>
+		<pubDate>Sat, 22 Dec 2018 09:00:00 +0000</pubDate>
+		<dc:creator><![CDATA[majer]]></dc:creator>
+				<category><![CDATA[NEWS]]></category>
+		<category><![CDATA[经济]]></category>
+	
+		<guid isPermaLink="false">http://x.jandan.net/?p=100584</guid>
+		<description><![CDATA[要求你1年不刷无聊图，然后付给你补偿金，多少钱才能令你接受这一合约？]]></description>
+		<wfw:commentRss>http://jandan.net/2018/12/22/facebook-cost.html/feed</wfw:commentRss>
+		<slash:comments>25</slash:comments>
+		</item>
+		<item>
+		<title>手足口病的诱因、症状和治疗</title>
+		<link>http://jandan.net/2018/12/22/hand-foot-mouth.html</link>
+		<comments>http://jandan.net/2018/12/22/hand-foot-mouth.html#comments</comments>
+		<pubDate>Sat, 22 Dec 2018 08:00:57 +0000</pubDate>
+		<dc:creator><![CDATA[行走的五花肉]]></dc:creator>
+				<category><![CDATA[NEWS]]></category>
+		<category><![CDATA[健康]]></category>
+	
+		<guid isPermaLink="false">http://x.jandan.net/?p=100582</guid>
+		<description><![CDATA[不光要注意孩子，家长自己也要注意啦……]]></description>
+		<wfw:commentRss>http://jandan.net/2018/12/22/hand-foot-mouth.html/feed</wfw:commentRss>
+		<slash:comments>5</slash:comments>
+		</item>
+		<item>
+		<title>Ask Reddit: 哪些食物让你不禁想问“古人是怎么发现这玩意能吃的？”</title>
+		<link>http://jandan.net/2018/12/22/what_food.html</link>
+		<comments>http://jandan.net/2018/12/22/what_food.html#comments</comments>
+		<pubDate>Sat, 22 Dec 2018 07:29:20 +0000</pubDate>
+		<dc:creator><![CDATA[Aech]]></dc:creator>
+				<category><![CDATA[NEWS]]></category>
+		<category><![CDATA[Reddit]]></category>
+	
+		<guid isPermaLink="false">http://x.jandan.net/?p=100603</guid>
+		<description><![CDATA[哪位聪明人首先想到的“我要用麝香猫的便便泡个咖啡”。]]></description>
+		<wfw:commentRss>http://jandan.net/2018/12/22/what_food.html/feed</wfw:commentRss>
+		<slash:comments>44</slash:comments>
+		</item>
+		<item>
+		<title>掺了兔子DNA的转基因绿萝可以净化室内空气</title>
+		<link>http://jandan.net/2018/12/22/houseplant-rabbit.html</link>
+		<comments>http://jandan.net/2018/12/22/houseplant-rabbit.html#comments</comments>
+		<pubDate>Sat, 22 Dec 2018 07:00:51 +0000</pubDate>
+		<dc:creator><![CDATA[Freez Sun]]></dc:creator>
+				<category><![CDATA[NEWS]]></category>
+		<category><![CDATA[转基因]]></category>
+	
+		<guid isPermaLink="false">http://x.jandan.net/?p=100583</guid>
+		<description><![CDATA[但即便是这种转基因绿萝，也得养上5-10公斤才能有效净化室内空气，还得装个风扇对着它吹。]]></description>
+		<wfw:commentRss>http://jandan.net/2018/12/22/houseplant-rabbit.html/feed</wfw:commentRss>
+		<slash:comments>18</slash:comments>
+		</item>
+		<item>
+		<title>新研究发现 X和Y染色体还无法确定孩子的性别</title>
+		<link>http://jandan.net/2018/12/22/x-and-y-chromosomes.html</link>
+		<comments>http://jandan.net/2018/12/22/x-and-y-chromosomes.html#comments</comments>
+		<pubDate>Sat, 22 Dec 2018 06:00:49 +0000</pubDate>
+		<dc:creator><![CDATA[majer]]></dc:creator>
+				<category><![CDATA[NEWS]]></category>
+		<category><![CDATA[医学]]></category>
+	
+		<guid isPermaLink="false">http://x.jandan.net/?p=100581</guid>
+		<description><![CDATA[还需要“垃圾DNA”中的调控基因]]></description>
+		<wfw:commentRss>http://jandan.net/2018/12/22/x-and-y-chromosomes.html/feed</wfw:commentRss>
+		<slash:comments>10</slash:comments>
+		</item>
+		<item>
+		<title>美一男子被错认成“大脚怪”遭开枪射击</title>
+		<link>http://jandan.net/2018/12/22/shooting-bigfoot.html</link>
+		<comments>http://jandan.net/2018/12/22/shooting-bigfoot.html#comments</comments>
+		<pubDate>Sat, 22 Dec 2018 05:00:47 +0000</pubDate>
+		<dc:creator><![CDATA[Diehard]]></dc:creator>
+				<category><![CDATA[NEWS]]></category>
+		<category><![CDATA[冷新闻]]></category>
+	
+		<guid isPermaLink="false">http://x.jandan.net/?p=100592</guid>
+		<description><![CDATA[“只要是我看见像大脚怪的，就会开枪。”]]></description>
+		<wfw:commentRss>http://jandan.net/2018/12/22/shooting-bigfoot.html/feed</wfw:commentRss>
+		<slash:comments>14</slash:comments>
+		</item>
+	</channel>
+</rss>

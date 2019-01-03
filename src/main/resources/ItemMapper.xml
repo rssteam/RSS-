@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.reader.rss.mapper.ItemMapper">
+  <resultMap id="BaseResultMap" type="com.reader.rss.pojo.Item">
+    <constructor>
+      <idArg column="item_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="item_title" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="item_url" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="site_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="fav_num" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="like_num" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="item_datae" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    item_id, item_title, item_url, site_id, fav_num, like_num, item_datae
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from item
+    where item_id = #{itemId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from item
+    where item_id = #{itemId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.reader.rss.pojo.Item">
+    insert into item (item_id, item_title, item_url, 
+      site_id, fav_num, like_num, 
+      item_datae)
+    values (#{itemId,jdbcType=INTEGER}, #{itemTitle,jdbcType=VARCHAR}, #{itemUrl,jdbcType=VARCHAR}, 
+      #{siteId,jdbcType=INTEGER}, #{favNum,jdbcType=INTEGER}, #{likeNum,jdbcType=INTEGER}, 
+      #{itemDatae,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.reader.rss.pojo.Item">
+    insert into item
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="itemId != null">
+        item_id,
+      </if>
+      <if test="itemTitle != null">
+        item_title,
+      </if>
+      <if test="itemUrl != null">
+        item_url,
+      </if>
+      <if test="siteId != null">
+        site_id,
+      </if>
+      <if test="favNum != null">
+        fav_num,
+      </if>
+      <if test="likeNum != null">
+        like_num,
+      </if>
+      <if test="itemDatae != null">
+        item_datae,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="itemId != null">
+        #{itemId,jdbcType=INTEGER},
+      </if>
+      <if test="itemTitle != null">
+        #{itemTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="itemUrl != null">
+        #{itemUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="siteId != null">
+        #{siteId,jdbcType=INTEGER},
+      </if>
+      <if test="favNum != null">
+        #{favNum,jdbcType=INTEGER},
+      </if>
+      <if test="likeNum != null">
+        #{likeNum,jdbcType=INTEGER},
+      </if>
+      <if test="itemDatae != null">
+        #{itemDatae,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.reader.rss.pojo.Item">
+    update item
+    <set>
+      <if test="itemTitle != null">
+        item_title = #{itemTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="itemUrl != null">
+        item_url = #{itemUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="siteId != null">
+        site_id = #{siteId,jdbcType=INTEGER},
+      </if>
+      <if test="favNum != null">
+        fav_num = #{favNum,jdbcType=INTEGER},
+      </if>
+      <if test="likeNum != null">
+        like_num = #{likeNum,jdbcType=INTEGER},
+      </if>
+      <if test="itemDatae != null">
+        item_datae = #{itemDatae,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where item_id = #{itemId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.reader.rss.pojo.Item">
+    update item
+    set item_title = #{itemTitle,jdbcType=VARCHAR},
+      item_url = #{itemUrl,jdbcType=VARCHAR},
+      site_id = #{siteId,jdbcType=INTEGER},
+      fav_num = #{favNum,jdbcType=INTEGER},
+      like_num = #{likeNum,jdbcType=INTEGER},
+      item_datae = #{itemDatae,jdbcType=TIMESTAMP}
+    where item_id = #{itemId,jdbcType=INTEGER}
+  </update>
+</mapper>

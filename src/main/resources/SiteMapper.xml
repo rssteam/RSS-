@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.reader.rss.mapper.SiteMapper">
+  <resultMap id="BaseResultMap" type="com.reader.rss.pojo.Site">
+    <constructor>
+      <idArg column="site_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="site_title" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="site_icon" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="site_url" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="site_condition" javaType="java.lang.String" jdbcType="VARCHAR" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    site_id, site_title, site_icon, site_url, site_condition
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from site
+    where site_id = #{siteId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from site
+    where site_id = #{siteId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.reader.rss.pojo.Site">
+    insert into site (site_id, site_title, site_icon, 
+      site_url, site_condition)
+    values (#{siteId,jdbcType=INTEGER}, #{siteTitle,jdbcType=VARCHAR}, #{siteIcon,jdbcType=VARCHAR}, 
+      #{siteUrl,jdbcType=VARCHAR}, #{siteCondition,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.reader.rss.pojo.Site">
+    insert into site
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="siteId != null">
+        site_id,
+      </if>
+      <if test="siteTitle != null">
+        site_title,
+      </if>
+      <if test="siteIcon != null">
+        site_icon,
+      </if>
+      <if test="siteUrl != null">
+        site_url,
+      </if>
+      <if test="siteCondition != null">
+        site_condition,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="siteId != null">
+        #{siteId,jdbcType=INTEGER},
+      </if>
+      <if test="siteTitle != null">
+        #{siteTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="siteIcon != null">
+        #{siteIcon,jdbcType=VARCHAR},
+      </if>
+      <if test="siteUrl != null">
+        #{siteUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="siteCondition != null">
+        #{siteCondition,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.reader.rss.pojo.Site">
+    update site
+    <set>
+      <if test="siteTitle != null">
+        site_title = #{siteTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="siteIcon != null">
+        site_icon = #{siteIcon,jdbcType=VARCHAR},
+      </if>
+      <if test="siteUrl != null">
+        site_url = #{siteUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="siteCondition != null">
+        site_condition = #{siteCondition,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where site_id = #{siteId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.reader.rss.pojo.Site">
+    update site
+    set site_title = #{siteTitle,jdbcType=VARCHAR},
+      site_icon = #{siteIcon,jdbcType=VARCHAR},
+      site_url = #{siteUrl,jdbcType=VARCHAR},
+      site_condition = #{siteCondition,jdbcType=VARCHAR}
+    where site_id = #{siteId,jdbcType=INTEGER}
+  </update>
+</mapper>
