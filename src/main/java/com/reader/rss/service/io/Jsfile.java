@@ -207,11 +207,15 @@ public class Jsfile implements IJsfile {
     @Override
     public String[] trimPage(String page) {
         Pattern pattern = null;
+        String rss_source = "<rss[^>]*>.*</rss[^>]*>";
     for(int i = 0;i < new_charcter.length;++i) {
         pattern = Pattern.compile(origin_charcter[i]);
         Matcher matcher = pattern.matcher(page);
         page = matcher.replaceAll(new_charcter[i]);
     }
+        page = page.split("<rss")[1];
+        page = page.split("</rss>")[0];
+//        System.out.println(page);
         String[] strings = page.split("<title>");
         return strings;
     }
@@ -221,6 +225,7 @@ public class Jsfile implements IJsfile {
         driver.get(url);
         String[] Items = trimPage(driver.getPageSource());
         String[] res = new String[charcter.length];
+//        System.out.println(Items[2]);
         Pattern pattern = null;
         Matcher matcher = null;
         String res1 = "";

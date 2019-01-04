@@ -7,7 +7,9 @@ import com.reader.rss.mapper.UserMapper;
 import com.reader.rss.pojo.Item;
 import com.reader.rss.pojo.Site;
 import com.reader.rss.service.io.IJsfile;
+import com.reader.rss.service.redisservice.Iredisservice;
 import com.reader.rss.service.resolveHtml.IRhtml;
+import com.reader.rss.service.resolvexml.IStorageXml;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,10 +25,10 @@ public class RssApplicationTests {
     IRhtml a;
     @Autowired
     IJsfile jsfile;
-    @Autowired(required = false)
-    UserMapper usermapper;
-    @Autowired(required = false)
-    ItemMapper itemMapper;
+    @Autowired
+    Iredisservice iredisservice;
+    @Autowired
+    IStorageXml storageXml;
     @Test
     public void contextLoads() {
         System.out.println("===="+a.selfResolve("http://www.jianshu.com")+"========");
@@ -47,10 +49,12 @@ public class RssApplicationTests {
 //        jsfile.reslovHtml("http://feeds2.feedburner.com/jandan");
 //        jsfile.reShowHtml("https://www.sohu.com");
 //        System.out.println(usermapper.selectUserById("2"));
-          Item item = new Item();
+/*          Item item = new Item();
           item.setFavNum(100);
-          itemMapper.insertSelective(item);
+          itemMapper.insertSelective(item);*/
 //        System.out.println(usermapper.selectByPrimaryKey("1"));
+//        storageXml.updateRssSource("http://blog.sina.com.cn/rss/1284797513.xml",2);
+//        System.out.println(iredisservice.getByKey("http://blog.sina.com.cn/rss/1284797513.xml",Item.class).toString());
     }
 }
 

@@ -27,6 +27,40 @@ public class Item {
         this.itemDatae = itemDatae;
     }
 
+    @Override
+    public String toString() {
+        return "Item{" +
+                "itemId=" + itemId +
+                ", itemTitle='" + itemTitle + '\'' +
+                ", itemUrl='" + itemUrl + '\'' +
+                ", siteId=" + siteId +
+                ", favNum=" + favNum +
+                ", likeNum=" + likeNum +
+                ", itemDatae=" + itemDatae +
+                '}';
+    }
+
+    public Item(String itemTitle,String url) {
+        this.itemTitle = itemTitle;
+        this.itemUrl = url;
+    }
+
+    public Item(String itemTitle, String itemUrl, Integer siteId, Integer favNum, Integer likeNum) {
+        this.itemTitle = itemTitle;
+        this.itemUrl = itemUrl;
+        this.siteId = siteId;
+        this.favNum = favNum;
+        this.likeNum = likeNum;
+    }
+
+    public Item(Content content){
+        this.itemTitle = content.getTitle();
+        this.itemUrl = content.getUrl();
+        this.favNum = 0;
+        this.likeNum = 0;
+        this.siteId = 1;
+        this.itemDatae = null;
+    }
     public Item() {
         super();
     }

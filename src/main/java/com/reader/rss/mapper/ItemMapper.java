@@ -16,4 +16,6 @@ public interface ItemMapper {
     int updateByPrimaryKeySelective(Item record);
 
     int updateByPrimaryKey(Item record);
+
+    Item selectNewItem();
 }
