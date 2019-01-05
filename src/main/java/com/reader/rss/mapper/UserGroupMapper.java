@@ -1,7 +1,9 @@
 package com.reader.rss.mapper;
 
 import com.reader.rss.pojo.UserGroup;
+import org.apache.ibatis.annotations.Mapper;
 
+@Mapper
 public interface UserGroupMapper {
     int deleteByPrimaryKey(Integer groupId);
 

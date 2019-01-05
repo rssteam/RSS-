@@ -152,4 +152,7 @@
       item_pic = #{itemPic,jdbcType=VARCHAR}
     where item_id = #{itemId,jdbcType=INTEGER}
   </update>
+  <select id="selectNewItem" resultType="com.reader.rss.pojo.Item">
+  select *from item where item_id=(select max(item_id) from item)
+</select>
 </mapper>

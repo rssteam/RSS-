@@ -39,6 +39,14 @@ public class Item {
     public Item() {
         super();
     }
+    public Item(Content content) {
+//       this.itemTitle= content.getTitle();
+//        this.itemUrl=content.getUrl();
+//        content.getDate();
+//        content.getDescr();
+        this(null,content.getTitle(),content.getUrl(),null,0,0,null,content.getIcon(),content.getDescr(),content.getImg());
+
+    }
 
     public Integer getItemId() {
         return itemId;
@@ -119,4 +127,5 @@ public class Item {
     public void setItemPic(String itemPic) {
         this.itemPic = itemPic == null ? null : itemPic.trim();
     }
+
 }

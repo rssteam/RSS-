@@ -83,7 +83,7 @@ public class Jsfile implements IJsfile {
                 desc = entry.getDescription().getValue();
             if(entry.getUpdatedDate() != null)
                 date = entry.getUpdatedDate().toString();
-            list.add(new Content(entry.getTitle(),entry.getLink(),desc,date,""));
+            list.add(new Content(entry.getTitle(),entry.getLink(),desc,"","",""));
         }
         return list;
     }
@@ -143,8 +143,8 @@ public class Jsfile implements IJsfile {
             if(date_e != -1 && date_s != -1) {
                 date += strs[i].substring(date_s, date_e);
             }
-
-            list.add(new Content(title,url,descr,date,""));
+//            String title, String url, String descr, String img, String date, String icon
+            list.add(new Content(title,url,descr,"","",""));
             title="";
             url="";
             descr="";
@@ -215,7 +215,7 @@ public class Jsfile implements IJsfile {
         Matcher matcher = pattern.matcher(page);
         page = matcher.replaceAll(new_charcter[i]);
     }
-//        System.out.println(page);
+        System.out.println(page);
         page = page.split("<rss")[1];
         page = page.split("</rss>")[0];
         String[] strings = page.split("<title>");
@@ -224,11 +224,12 @@ public class Jsfile implements IJsfile {
 
     @Override
     public List<Content> reslovHtml(String url) {
-//        String url_icon = getTitleiconByUrl(url);
+        String url_icon = getTitleiconByUrl(url);
         driver.get(url);
-/*        if(url_icon == null)
+       System.out.println(url_icon);
+        if(url_icon == null)
             url_icon = getTitleiconByPage(driver.getPageSource());
-        System.out.println(driver.getPageSource());*/
+//        System.out.println(driver.getPageSource());
         String[] Items = trimPage(driver.getPageSource());
         String[] res = new String[charcter.length+1];
         Pattern pattern = null;
@@ -254,7 +255,7 @@ public class Jsfile implements IJsfile {
                     res[j] = "";
                 }
             }
-            list.add(new Content(res[0],res[1],res[2],res[3],res[4]));
+            list.add(new Content(res[0],res[1],res[2],res[4],"",url_icon));
         }
         return list;
     }
@@ -287,15 +288,19 @@ public class Jsfile implements IJsfile {
         matcher = pattern.matcher(Url);
             if(matcher.find()) {
                 String a = matcher.group() + hreix + "ico";
-//                System.out.println(a);
+                System.out.println(a);
                 driver.get(a);
                 String u = driver.getPageSource();
-//                System.out.println(u);
-                pattern = Pattern.compile("<img.*>");
+                System.out.println("_______________________________________________________________");
+               System.out.println(u);
+                System.out.println("_______________________________________________________________");
+                pattern = Pattern.compile("<img[^>]+");
                 matcher = pattern.matcher(u);
                 if(matcher.find()) {
-                    pattern = Pattern.compile("http://.*ico");
-                    matcher = pattern.matcher(matcher.group());
+                    String str = matcher.group();
+                    System.out.println(str);
+                    pattern = Pattern.compile("http[s]{0,1}://.*ico");
+                    matcher = pattern.matcher(str);
                     if (matcher.find()) return matcher.group();
                 }
             }

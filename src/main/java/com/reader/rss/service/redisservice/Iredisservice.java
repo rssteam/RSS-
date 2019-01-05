@@ -11,8 +11,14 @@ public interface Iredisservice {
     void setValue(String key,Item value,long time_s);
     void setValue(String key,String value);
     void setValue(String key,Object value);
-    void updateValue(List<Item> list,Site site);
+    void setValue(String key,String value,long time_s);
+    void updateItemValue(List<Item> list,Site site);
     boolean isExists(String key);
-    <T> List<T> getSiteItem(String mapkey);
-    void updateAttrubite(Item item);
+    <T> List<T> getMap(String mapkey,Class<T> tClass);
+    void updateItemAttrubite(Item item);
+    void addSite(Site site);
+    void updateSite(Site site);
+    void removeSite(int key);
+    List<Site> preUpdate();
+
 }
