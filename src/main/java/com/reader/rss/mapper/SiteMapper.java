@@ -20,4 +20,6 @@ public interface SiteMapper {
     int updateByPrimaryKey(Site record);
 
     List<Site> getAllSite();
+
+    List<Site> getSiteByUrl(String url);
 }

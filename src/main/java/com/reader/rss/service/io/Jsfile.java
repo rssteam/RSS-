@@ -215,7 +215,7 @@ public class Jsfile implements IJsfile {
         Matcher matcher = pattern.matcher(page);
         page = matcher.replaceAll(new_charcter[i]);
     }
-//        System.out.println(page);
+        System.out.println(page);
         page = page.split("<rss")[1];
         page = page.split("</rss>")[0];
         String[] strings = page.split("<title>");
@@ -226,6 +226,7 @@ public class Jsfile implements IJsfile {
     public List<Content> reslovHtml(String url) {
 //        String url_icon = getTitleiconByUrl(url);
         driver.get(url);
+        System.out.println(url);
 /*        if(url_icon == null)
             url_icon = getTitleiconByPage(driver.getPageSource());
         System.out.println(driver.getPageSource());*/

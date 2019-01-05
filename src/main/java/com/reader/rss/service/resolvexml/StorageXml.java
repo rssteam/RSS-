@@ -25,7 +25,7 @@ public class StorageXml implements IStorageXml {
     @Override
     public void updateRssSource(Site site) {
         List<Item> list = convertXmltoItem(site.getSiteUrl());
-        redisservice.updateValue(list,site);
+        redisservice.updateItemValue(list,site);
     }
 
     @Override
@@ -41,7 +41,7 @@ public class StorageXml implements IStorageXml {
     //取得所有网站更新页面
     @Override
     public void updateAllSite() {
-        List<Site> list = siteMapper.getAllSite();
+        List<Site> list = redisservice.preUpdate();
         for(Site site:list){
             updateRssSource(site);
         }

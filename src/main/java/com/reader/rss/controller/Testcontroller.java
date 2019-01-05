@@ -1,5 +1,6 @@
 package com.reader.rss.controller;
 
+import com.reader.rss.mapper.SiteMapper;
 import com.reader.rss.mapper.UserMapper;
 import com.reader.rss.pojo.Item;
 import com.reader.rss.pojo.Site;
@@ -16,6 +17,8 @@ public class Testcontroller {
     IJsfile jsfile;
     @Autowired
     Iredisservice iredisservice;
+    @Autowired(required = false)
+    SiteMapper siteMapper;
     @Autowired
     IStorageXml storageXml;
     @RequestMapping("hello")
@@ -32,9 +35,10 @@ public class Testcontroller {
 //        usermapper.addUser(new User("2","1","1","1","1991-1-1"));
 //        return  usermapper.selectByPrimaryKey("1");
         Site site = new Site();
-        site.setSiteId(1);
         site.setSiteUrl("http://www.cnbeta.com/backend.php");
-        storageXml.updateRssSource(site);
-        return iredisservice.getByKey("map"+1,"https://www.cnbeta.com/articles/tech/805413.htm",Item.class);
+        iredisservice.addSite(site);
+//        storageXml.updateRssSource(site);
+        storageXml.updateAllSite();
+        return iredisservice.getByKey("map"+1,"https://www.cnbeta.com/articles/tech/805373.htm",Item.class);
     }
 }
