@@ -6,7 +6,7 @@ import com.reader.rss.pojo.Site;
 import java.util.List;
 
 public interface IStorageXml {
-    void updateRssSource(String url,int siteid);
+    void updateRssSource(Site site);
     List<Item> convertXmltoItem(String url);
     void updateAllSite();
 }
