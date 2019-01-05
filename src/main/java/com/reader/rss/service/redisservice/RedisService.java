@@ -48,11 +48,10 @@ public class RedisService implements Iredisservice {
     }
 
     @Override
-    public void setValue(String key, Item value,int siteid,long time_s) {
+    public void setValue(String key, Item value,long time_s) {
         String string = Jutil.convertObj2String(value);
 //        redisTemplate.opsForValue().set(key,Jutil.convertObj2String(value),time_s, TimeUnit.SECONDS);
-        redisTemplate.opsForHash().put("map"+siteid,key,Jutil.convertObj2String(value));
-        redisTemplate.expire("map"+siteid,time_s,TimeUnit.SECONDS);
+        redisTemplate.opsForHash().put("map"+value.getSiteId(),key,Jutil.convertObj2String(value));
     }
 
     @Override
@@ -72,26 +71,29 @@ public class RedisService implements Iredisservice {
 
     @Override
     public void updateValue(List<Item> list,int siteid) {
-//        Map<String,String> map = new HashMap<>();
         for (Item item : list) {
+            if(!redisTemplate.opsForHash().hasKey("map"+siteid,item.getItemUrl())) {//缓存中不存在该条目
+                item.setSiteId(siteid);
+                //差图片
+                item.setItemDatae(new Date());
+                System.out.println(item);
+                itemMapper.insert(item);//写数据库
+            }
+
+        }
+        redisTemplate.opsForHash().delete("map"+list.get(0).getSiteId());
+        for(Item item:list){
             String str = Jutil.convertObj2String(item);
             Item item1 = Jutil.convertString2Obj(str,Item.class);
-//            if(set.isMember(""+item.getSiteId(),item))continue;
-//            if (isExists(item.getItemUrl())) continue;
-//            map.put("map"+siteid,Jutil.convertObj2String(item));
-            if(redisTemplate.opsForHash().hasKey("map"+siteid,item.getItemUrl()))continue;//缓存中已存在该条目
-            item.setSiteId(siteid);
-            item.setItemDatae(new Date());
-            System.out.println(item);
-            itemMapper.insert(item);//写数据库
             item = itemMapper.selectNewItem();
-            setValue(item.getItemUrl(),item,siteid,expire);//写缓存
+            setValue(item.getItemUrl(),item,expire);//写缓存
         }
+//        redisTemplate.expire("map"+list.get(0).getSiteId(),expire,TimeUnit.SECONDS);
     }
 
     @Override
     public void updateAttrubite(Item item) {
         itemMapper.updateByPrimaryKey(item);
-        setValue(item.getItemUrl(),item,item.getSiteId(),expire);
+        setValue(item.getItemUrl(),item,expire);
     }
 }
