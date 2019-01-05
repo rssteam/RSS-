@@ -23,9 +23,9 @@ public class StorageXml implements IStorageXml {
     @Autowired(required =false)
     private SiteMapper siteMapper;
     @Override
-    public void updateRssSource(String url,int siteid) {
-        List<Item> list = convertXmltoItem(url);
-        redisservice.updateValue(list,siteid);
+    public void updateRssSource(Site site) {
+        List<Item> list = convertXmltoItem(site.getSiteUrl());
+        redisservice.updateValue(list,site);
     }
 
     @Override
@@ -43,7 +43,7 @@ public class StorageXml implements IStorageXml {
     public void updateAllSite() {
         List<Site> list = siteMapper.getAllSite();
         for(Site site:list){
-            updateRssSource(site.getSiteUrl(),site.getSiteId());
+            updateRssSource(site);
         }
     }
 }

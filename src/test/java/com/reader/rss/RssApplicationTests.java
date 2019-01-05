@@ -6,6 +6,7 @@ import com.reader.rss.mapper.SiteMapper;
 import com.reader.rss.mapper.UserMapper;
 import com.reader.rss.pojo.Item;
 import com.reader.rss.pojo.Site;
+import com.reader.rss.pojo.User;
 import com.reader.rss.service.io.IJsfile;
 import com.reader.rss.service.redisservice.Iredisservice;
 import com.reader.rss.service.resolveHtml.IRhtml;
@@ -37,6 +38,10 @@ public class RssApplicationTests {
     public void testio()throws Exception{
 //        jsfile.IO("https://www.csdn.net/");
     }
+    @Autowired(required = false)
+    UserMapper userMapper;
+    @Autowired(required = false)
+    SiteMapper siteMapper;
     @Test
     public void testxml() throws Exception{
 //        jsfile.getXml("http://feeds2.feedburner.com/jandan");
@@ -55,6 +60,10 @@ public class RssApplicationTests {
 //        System.out.println(usermapper.selectByPrimaryKey("1"));
 //        storageXml.updateRssSource("http://blog.sina.com.cn/rss/1284797513.xml",2);
 //        System.out.println(iredisservice.getByKey("http://blog.sina.com.cn/rss/1284797513.xml",Item.class).toString());
+        Site site=new Site();
+        site.setSiteUrl("dsadsad");
+        siteMapper.insert(site);
+
     }
 }
 

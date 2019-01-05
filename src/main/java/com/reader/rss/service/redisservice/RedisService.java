@@ -71,7 +71,7 @@ public class RedisService implements Iredisservice {
     }
 
     @Override
-    public void updateValue(List<Item> list,int siteid) {
+    public void updateValue(List<Item> list,Site site) {
 //        Map<String,String> map = new HashMap<>();
         for (Item item : list) {
             String str = Jutil.convertObj2String(item);
@@ -79,13 +79,14 @@ public class RedisService implements Iredisservice {
 //            if(set.isMember(""+item.getSiteId(),item))continue;
 //            if (isExists(item.getItemUrl())) continue;
 //            map.put("map"+siteid,Jutil.convertObj2String(item));
-            if(redisTemplate.opsForHash().hasKey("map"+siteid,item.getItemUrl()))continue;//缓存中已存在该条目
-            item.setSiteId(siteid);
-            item.setItemDatae(new Date());
+            if(redisTemplate.opsForHash().hasKey("map"+site.getSiteId(),item.getItemUrl()))continue;//缓存中已存在该条目
+            item.setSiteId(site.getSiteId());
+            item.setItemDate(new Date());
+            item.setItemIcon(site.getSiteIcon());
             System.out.println(item);
             itemMapper.insert(item);//写数据库
             item = itemMapper.selectNewItem();
-            setValue(item.getItemUrl(),item,siteid,expire);//写缓存
+            setValue(item.getItemUrl(),item,site.getSiteId(),expire);//写缓存
         }
     }
 

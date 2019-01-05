@@ -93,6 +93,6 @@
     where site_id = #{siteId,jdbcType=INTEGER}
   </update>
   <select id="getAllSite" resultType="com.reader.rss.pojo.Site">
-    select * from Site
-  </select>
+  select * from Site
+</select>
 </mapper>

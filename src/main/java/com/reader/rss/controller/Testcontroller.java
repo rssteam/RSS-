@@ -2,6 +2,7 @@ package com.reader.rss.controller;
 
 import com.reader.rss.mapper.UserMapper;
 import com.reader.rss.pojo.Item;
+import com.reader.rss.pojo.Site;
 import com.reader.rss.pojo.User;
 import com.reader.rss.service.io.IJsfile;
 import com.reader.rss.service.redisservice.Iredisservice;
@@ -30,7 +31,10 @@ public class Testcontroller {
 //        System.out.println("1111111111111");
 //        usermapper.addUser(new User("2","1","1","1","1991-1-1"));
 //        return  usermapper.selectByPrimaryKey("1");
-        storageXml.updateRssSource("http://www.cnbeta.com/backend.php",2);
+        Site site=new Site();
+        site.setSiteUrl("http://www.cnbeta.com/backend.php");
+        site.setSiteId(2);
+        storageXml.updateRssSource(site);
         return iredisservice.getByKey("map"+2,"https://www.cnbeta.com/articles/tech/805187.htm",Item.class);
     }
 }
