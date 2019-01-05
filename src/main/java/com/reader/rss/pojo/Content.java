@@ -4,7 +4,7 @@ public class Content {
     private String title;
     private String url;
     private String descr;
-    private String author;
+    private String img;
     private String date;
 
     @Override
@@ -13,16 +13,16 @@ public class Content {
                 "title='" + title + '\'' +
                 ", url='" + url + '\'' +
                 ", descr='" + descr + '\'' +
-                ", author='" + author + '\'' +
+                ", author='" + img + '\'' +
                 ", date='" + date + '\'' +
                 '}';
     }
 
-    public Content(String title, String url, String descr,  String date, String author) {
+    public Content(String title, String url, String descr,  String date, String img) {
         this.title = title;
         this.url = url;
         this.descr = descr;
-        this.author = author;
+        this.img = img;
         this.date = date;
     }
 
@@ -51,11 +51,11 @@ public class Content {
     }
 
     public String getAuthor() {
-        return author;
+        return img;
     }
 
     public void setAuthor(String author) {
-        this.author = author;
+        this.img = author;
     }
 
     public String getDate() {

@@ -33,6 +33,8 @@ public class Jsfile implements IJsfile {
     private final  static String jspath = "<script type=\"text/javascript\" src=\"attack.js\"></script>\r\n";
     private final  static String[] charcter = {".*</title>","<link>.*</link>","<description>.*</description>","<pubDate>.*</pubDate>"};
     private final  static String str = "<[^>]+>";
+    private final  static String title_icon = "http://[^/]+";
+    private final  static String hreix = "/favicon.";
     private final  static String[] origin_charcter = {"&lt;","&gt;","&amp;","&quot;","&nbsp;","&apos;","\n"," ","<!--.*-->","<!\\[CDATA\\[","]]>"};
     private final  static String[] new_charcter = {"<",">","&","\"","","'","","","","",""};
     @Autowired
@@ -207,25 +209,28 @@ public class Jsfile implements IJsfile {
     @Override
     public String[] trimPage(String page) {
         Pattern pattern = null;
-        String rss_source = "<rss[^>]*>.*</rss[^>]*>";
+        String image_source = "<rss[^>]*>.*</rss[^>]*>";
     for(int i = 0;i < new_charcter.length;++i) {
         pattern = Pattern.compile(origin_charcter[i]);
         Matcher matcher = pattern.matcher(page);
         page = matcher.replaceAll(new_charcter[i]);
     }
+//        System.out.println(page);
         page = page.split("<rss")[1];
         page = page.split("</rss>")[0];
-//        System.out.println(page);
         String[] strings = page.split("<title>");
         return strings;
     }
 
     @Override
     public List<Content> reslovHtml(String url) {
+//        String url_icon = getTitleiconByUrl(url);
         driver.get(url);
+/*        if(url_icon == null)
+            url_icon = getTitleiconByPage(driver.getPageSource());
+        System.out.println(driver.getPageSource());*/
         String[] Items = trimPage(driver.getPageSource());
-        String[] res = new String[charcter.length];
-//        System.out.println(Items[2]);
+        String[] res = new String[charcter.length+1];
         Pattern pattern = null;
         Matcher matcher = null;
         String res1 = "";
@@ -236,6 +241,9 @@ public class Jsfile implements IJsfile {
                 matcher = pattern.matcher(Items[i]);
                 if(matcher.find()) {
                     res1 = matcher.group();
+                    if(j == 2){
+                        res[charcter.length] = getPicture(res1);
+                    }
                     pattern = Pattern.compile(str);
                     matcher = pattern.matcher(res1);
                     if(matcher.find())
@@ -246,9 +254,68 @@ public class Jsfile implements IJsfile {
                     res[j] = "";
                 }
             }
-            list.add(new Content(res[0],res[1],res[2],res[3],""));
+            list.add(new Content(res[0],res[1],res[2],res[3],res[4]));
         }
         return list;
+    }
+
+    @Override
+    public String getTitleiconByPage(String source) {
+        String res = "";
+        source = source.split("head>")[1];
+        Pattern pattern = Pattern.compile("<link.*href.*((\\.ico)|(\\.png)|(\\.jpg)|(\\.svg))+.*>");
+        Matcher matcher = pattern.matcher(source);
+        if(matcher.find()){
+            res = matcher.group();
+            pattern = Pattern.compile("[www|//]{1}[^\"]+");
+            matcher = pattern.matcher(res);
+            if(matcher.find()) {
+                res = matcher.group();
+                if(res.charAt(0) == '/' && res.charAt(1) == '/')
+                return res.substring(2);
+                return res;
+            }
+        }
+        return "title.ico";
+    }
+
+    @Override
+    public String getTitleiconByUrl(String Url) {
+        Pattern pattern;
+        Matcher matcher;
+        pattern = Pattern.compile(title_icon);
+        matcher = pattern.matcher(Url);
+            if(matcher.find()) {
+                String a = matcher.group() + hreix + "ico";
+//                System.out.println(a);
+                driver.get(a);
+                String u = driver.getPageSource();
+//                System.out.println(u);
+                pattern = Pattern.compile("<img.*>");
+                matcher = pattern.matcher(u);
+                if(matcher.find()) {
+                    pattern = Pattern.compile("http://.*ico");
+                    matcher = pattern.matcher(matcher.group());
+                    if (matcher.find()) return matcher.group();
+                }
+            }
+        return null;
+    }
+
+    @Override
+    public String getPicture(String page) {
+        Pattern pattern = Pattern.compile("<img.*>");
+        Matcher matcher = pattern.matcher(page);
+        if(matcher.find()){
+            String res = matcher.group();
+            pattern = Pattern.compile("http.*[^\"]+");
+            matcher = pattern.matcher(res);
+            if(matcher.find()){
+                res = matcher.group();
+                return res;
+            }
+        }
+        return "default.jpg";
     }
 }
 

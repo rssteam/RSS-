@@ -11,10 +11,13 @@
       <arg column="like_num" javaType="java.lang.Integer" jdbcType="INTEGER" />
       <arg column="item_date" javaType="java.util.Date" jdbcType="TIMESTAMP" />
       <arg column="item_icon" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="item_des" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="item_pic" javaType="java.lang.String" jdbcType="VARCHAR" />
     </constructor>
   </resultMap>
   <sql id="Base_Column_List">
-    item_id, item_title, item_url, site_id, fav_num, like_num, item_date, item_icon
+    item_id, item_title, item_url, site_id, fav_num, like_num, item_date, item_icon, 
+    item_des, item_pic
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
@@ -29,10 +32,12 @@
   <insert id="insert" parameterType="com.reader.rss.pojo.Item">
     insert into item (item_id, item_title, item_url, 
       site_id, fav_num, like_num, 
-      item_date, item_icon)
+      item_date, item_icon, item_des, 
+      item_pic)
     values (#{itemId,jdbcType=INTEGER}, #{itemTitle,jdbcType=VARCHAR}, #{itemUrl,jdbcType=VARCHAR}, 
       #{siteId,jdbcType=INTEGER}, #{favNum,jdbcType=INTEGER}, #{likeNum,jdbcType=INTEGER}, 
-      #{itemDate,jdbcType=TIMESTAMP}, #{itemIcon,jdbcType=VARCHAR})
+      #{itemDate,jdbcType=TIMESTAMP}, #{itemIcon,jdbcType=VARCHAR}, #{itemDes,jdbcType=VARCHAR}, 
+      #{itemPic,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.reader.rss.pojo.Item">
     insert into item
@@ -61,6 +66,12 @@
       <if test="itemIcon != null">
         item_icon,
       </if>
+      <if test="itemDes != null">
+        item_des,
+      </if>
+      <if test="itemPic != null">
+        item_pic,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="itemId != null">
@@ -86,6 +97,12 @@
       </if>
       <if test="itemIcon != null">
         #{itemIcon,jdbcType=VARCHAR},
+      </if>
+      <if test="itemDes != null">
+        #{itemDes,jdbcType=VARCHAR},
+      </if>
+      <if test="itemPic != null">
+        #{itemPic,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -113,6 +130,12 @@
       <if test="itemIcon != null">
         item_icon = #{itemIcon,jdbcType=VARCHAR},
       </if>
+      <if test="itemDes != null">
+        item_des = #{itemDes,jdbcType=VARCHAR},
+      </if>
+      <if test="itemPic != null">
+        item_pic = #{itemPic,jdbcType=VARCHAR},
+      </if>
     </set>
     where item_id = #{itemId,jdbcType=INTEGER}
   </update>
@@ -124,10 +147,9 @@
       fav_num = #{favNum,jdbcType=INTEGER},
       like_num = #{likeNum,jdbcType=INTEGER},
       item_date = #{itemDate,jdbcType=TIMESTAMP},
-      item_icon = #{itemIcon,jdbcType=VARCHAR}
+      item_icon = #{itemIcon,jdbcType=VARCHAR},
+      item_des = #{itemDes,jdbcType=VARCHAR},
+      item_pic = #{itemPic,jdbcType=VARCHAR}
     where item_id = #{itemId,jdbcType=INTEGER}
   </update>
-  <select id="selectNewItem" resultType="com.reader.rss.pojo.Item">
-  select *from item where item_id=(select max(item_id) from item)
-</select>
 </mapper>

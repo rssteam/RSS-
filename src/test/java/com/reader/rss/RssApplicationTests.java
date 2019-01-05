@@ -51,7 +51,7 @@ public class RssApplicationTests {
 //        jsfile.reslovVersion();
 //        jsfile.getXml("http://china232.libsyn.com/rss");
 //        jsfile.p("http://www.ifanr.com/feed");
-//        jsfile.reslovHtml("http://feeds2.feedburner.com/jandan");
+        jsfile.reslovHtml("http://www.ifanr.com/feed");
 //        jsfile.reShowHtml("https://www.sohu.com");
 //        System.out.println(usermapper.selectUserById("2"));
 /*          Item item = new Item();

@@ -33,8 +33,8 @@ public class Testcontroller {
 //        return  usermapper.selectByPrimaryKey("1");
         Site site=new Site();
         site.setSiteUrl("http://www.cnbeta.com/backend.php");
-        site.setSiteId(2);
-        storageXml.updateRssSource(site);
+        site.setSiteId(1);
+       storageXml.updateRssSource(site);
         return iredisservice.getByKey("map"+2,"https://www.cnbeta.com/articles/tech/805187.htm",Item.class);
     }
 }

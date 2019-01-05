@@ -8,7 +8,7 @@ import java.util.List;
 public interface Iredisservice {
     void removeByKey(String key);
     <T> T getByKey(String mapkey,String key,Class<T> tClass);//mapkey为"map"+siteid,key为url
-    void setValue(String key,Item value,int siteid,long time_s);
+    void setValue(String key,Item value,long time_s);
     void setValue(String key,String value);
     void setValue(String key,Object value);
     void updateValue(List<Item> list,Site site);

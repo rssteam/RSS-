@@ -1,9 +1,7 @@
 package com.reader.rss.mapper;
 
 import com.reader.rss.pojo.Item;
-import org.apache.ibatis.annotations.Mapper;
 
-@Mapper
 public interface ItemMapper {
     int deleteByPrimaryKey(Integer itemId);
 
@@ -16,6 +14,4 @@ public interface ItemMapper {
     int updateByPrimaryKeySelective(Item record);
 
     int updateByPrimaryKey(Item record);
-
-    Item selectNewItem();
 }

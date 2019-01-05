@@ -25,6 +25,7 @@ public class StorageXml implements IStorageXml {
     @Override
     public void updateRssSource(Site site) {
         List<Item> list = convertXmltoItem(site.getSiteUrl());
+        System.out.println(list.get(0));
         redisservice.updateValue(list,site);
     }
 

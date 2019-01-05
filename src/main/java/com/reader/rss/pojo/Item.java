@@ -19,7 +19,11 @@ public class Item {
 
     private String itemIcon;
 
-    public Item(Integer itemId, String itemTitle, String itemUrl, Integer siteId, Integer favNum, Integer likeNum, Date itemDate, String itemIcon) {
+    private String itemDes;
+
+    private String itemPic;
+
+    public Item(Integer itemId, String itemTitle, String itemUrl, Integer siteId, Integer favNum, Integer likeNum, Date itemDate, String itemIcon, String itemDes, String itemPic) {
         this.itemId = itemId;
         this.itemTitle = itemTitle;
         this.itemUrl = itemUrl;
@@ -28,28 +32,10 @@ public class Item {
         this.likeNum = likeNum;
         this.itemDate = itemDate;
         this.itemIcon = itemIcon;
-    }
-    public Item(String itemTitle,String url) {
-        this.itemTitle = itemTitle;
-        this.itemUrl = url;
+        this.itemDes = itemDes;
+        this.itemPic = itemPic;
     }
 
-    public Item(String itemTitle, String itemUrl, Integer siteId, Integer favNum, Integer likeNum) {
-        this.itemTitle = itemTitle;
-        this.itemUrl = itemUrl;
-        this.siteId = siteId;
-        this.favNum = favNum;
-        this.likeNum = likeNum;
-    }
-
-    public Item(Content content){
-        this.itemTitle = content.getTitle();
-        this.itemUrl = content.getUrl();
-        this.favNum = 0;
-        this.likeNum = 0;
-        this.siteId = 1;
-        this.itemDate = null;
-    }
     public Item() {
         super();
     }
@@ -118,17 +104,19 @@ public class Item {
         this.itemIcon = itemIcon == null ? null : itemIcon.trim();
     }
 
-    @Override
-    public String toString() {
-        return "Item{" +
-                "itemId=" + itemId +
-                ", itemTitle='" + itemTitle + '\'' +
-                ", itemUrl='" + itemUrl + '\'' +
-                ", siteId=" + siteId +
-                ", favNum=" + favNum +
-                ", likeNum=" + likeNum +
-                ", itemDate=" + itemDate +
-                ", itemIcon='" + itemIcon + '\'' +
-                '}';
+    public String getItemDes() {
+        return itemDes;
+    }
+
+    public void setItemDes(String itemDes) {
+        this.itemDes = itemDes == null ? null : itemDes.trim();
+    }
+
+    public String getItemPic() {
+        return itemPic;
+    }
+
+    public void setItemPic(String itemPic) {
+        this.itemPic = itemPic == null ? null : itemPic.trim();
     }
 }
