@@ -11,4 +11,7 @@ public interface IJsfile {
     void p(String str);
     String[] trimPage(String page);//去除注释等无关内容
     List<Content> reslovHtml(String url);//解析xml取出需要的Item
+    String getTitleiconByPage(String source);//由html得到标题图标
+    String getTitleiconByUrl(String Url);//由Url得到标题图标
+    String getPicture(String page);
 }
