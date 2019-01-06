@@ -8,6 +8,7 @@ import com.reader.rss.mapper.SiteMapper;
 import com.reader.rss.pojo.Collection;
 import com.reader.rss.pojo.Item;
 import com.reader.rss.pojo.Site;
+import com.reader.rss.service.io.IJsfile;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.HashOperations;
 import org.springframework.data.redis.core.SetOperations;
@@ -26,6 +27,8 @@ public class RedisService implements Iredisservice {
     private ItemMapper itemMapper;
     @Autowired(required = false)
     private SiteMapper siteMapper;
+    @Autowired
+    IJsfile jsfile;
     @Override
     public void removeByKey(String key) {
         if(redisTemplate.hasKey(key)){
@@ -55,11 +58,11 @@ public class RedisService implements Iredisservice {
     }
 
     @Override
-    public void setValue(String key, Item value,long time_s) {
+    public void setValue(Item value,long time_s) {
         String string = Jutil.convertObj2String(value);
-        redisTemplate.opsForHash().put("map"+value.getSiteId(),key,Jutil.convertObj2String(value));
+        redisTemplate.opsForHash().put("map"+value.getSiteId(),"item"+value.getItemId(),Jutil.convertObj2String(value));
     }
-
+/*
     @Override
     public void setValue(String key, String value) {
         redisTemplate.opsForValue().set(key,value);
@@ -68,12 +71,15 @@ public class RedisService implements Iredisservice {
     @Override
     public void setValue(String key, Object value) {
         redisTemplate.opsForValue().set(key,Jutil.convertObj2String(value));
-    }
+    }*/
 
     @Override
     public boolean isExists(String key) {
         return redisTemplate.hasKey(key);
     }
+
+
+
     @Override
     public void updateItemValue(List<Item> list,Site site) {
         String key = "";
@@ -85,8 +91,9 @@ public class RedisService implements Iredisservice {
         Iterator iterator = set.iterator();
         while(iterator.hasNext()){
             key = (String) iterator.next();
-            if(map.containsKey(key)){
-                map.remove(key);
+            var = getByKey("map"+site.getSiteId(),key,Item.class);
+            if(map.containsKey(var.getItemUrl())){
+                map.remove(var.getItemUrl());
             }
             else{
                 redisTemplate.opsForHash().delete("map"+site.getSiteId(),key);
@@ -97,16 +104,18 @@ public class RedisService implements Iredisservice {
             var = values.get(i);
             var.setSiteId(site.getSiteId());
             var.setItemDate(new Date());
+            var.setItemIcon(site.getSiteIcon());
             itemMapper.insert(var);
             var = itemMapper.selectNewItem();
-            redisTemplate.opsForHash().put("map"+site.getSiteId(),var.getItemUrl(),Jutil.convertObj2String(var));
+            redisTemplate.opsForHash().put("map"+site.getSiteId(),"item"+var.getItemId(),Jutil.convertObj2String(var));
         }
     }
 
     @Override
-    public void updateItemAttrubite(Item item) {
+    public Item updateItemAttrubite(Item item) {
         itemMapper.updateByPrimaryKey(item);
-        setValue(item.getItemUrl(),item,expire);
+        setValue(item,expire);
+        return itemMapper.selectByPrimaryKey(item.getItemId());
     }
 
     @Override
@@ -116,36 +125,87 @@ public class RedisService implements Iredisservice {
     }
 
     @Override
-    public void addSite(Site site) {
-        siteMapper.insert(site);
-        setValue(site.getSiteUrl(),Jutil.convertObj2String(siteMapper.getSiteByUrl(site.getSiteUrl()).get(0)),expire);
+    public Site addSite(Site site) {
+        if(siteMapper.getSiteByUrl(site.getSiteUrl()).size() == 0) {
+            site.setSiteIcon(jsfile.getIcon(site.getSiteUrl()));
+            siteMapper.insert(site);
+            site = siteMapper.getSiteByUrl(site.getSiteUrl()).get(0);
+            setValue("site" + site.getSiteId(), Jutil.convertObj2String(site), expire);
+            return site;
+        }
+        System.out.println("重复的SiteUrl");
+        return siteMapper.getSiteByUrl(site.getSiteUrl()).get(0);
     }
 
     @Override
     public void updateSite(Site site) {
         siteMapper.updateByPrimaryKey(site);
-        setValue(site.getSiteUrl(),Jutil.convertObj2String(site),expire);
+        setValue("site"+site.getSiteId(),Jutil.convertObj2String(site),expire);
     }
 
     @Override
-    public void removeSite(int key) {
-        Site site = siteMapper.selectByPrimaryKey(key);
-        removeByKey(site.getSiteUrl());
-        redisTemplate.opsForHash().delete("mapsite",site.getSiteUrl());
-        siteMapper.deleteByPrimaryKey(key);
+    public void removeSite(int siteid) {
+//        Site site = siteMapper.selectByPrimaryKey(key);
+        removeByKey("site"+siteid);
+        redisTemplate.opsForHash().delete("mapsite","site"+siteid);
+        siteMapper.deleteByPrimaryKey(siteid);
     }
 
     @Override
     public List<Site> preUpdate() {
         List<Site> list = getMap("mapsite",Site.class);
         for(int i = 0;i < list.size();++i){
-            System.out.println(list.get(i).getSiteUrl());
-            if(!isExists(list.get(i).getSiteUrl())){
-                redisTemplate.opsForHash().delete("mapsite",list.get(i).getSiteUrl());
+            if(!isExists("site"+list.get(i).getSiteId())){
+                redisTemplate.opsForHash().delete("mapsite","site"+list.get(i).getSiteId());
                 list.remove(i);
                 i--;
             }
         }
         return list;
+    }
+
+    @Override
+    public boolean isExistsMapKey(String mapkey, String key) {
+        return redisTemplate.opsForHash().hasKey(mapkey,key);
+    }
+
+    @Override
+    public List<Item> getSiteItems(int siteid) {
+//        System.out.println(siteid);
+        if(isExists("map"+siteid)) return getMap("map"+siteid,Item.class);
+        List<Item> list = itemMapper.selectBysiteid(siteid);
+        updateItemValue(list,getSite(siteid));
+        return list;
+    }
+
+    @Override
+    public Site getSite(int siteid) {
+        Site site = null;
+        if(!isExists("site"+siteid)){
+            site = siteMapper.selectByPrimaryKey(siteid);
+            preUpdate();
+            setValue("site"+siteid,Jutil.convertObj2String(site),expire);
+        }
+        else {
+            site = getByKey("mapsite","site"+siteid,Site.class);
+        }
+        return site;
+    }
+
+    @Override
+    public Item getItem(int itemid) {
+       return itemMapper.selectByPrimaryKey(itemid);
+    }
+
+    @Override
+    public Item getItem(int itemid, int siteid) {
+        if(isExistsMapKey("map"+siteid,"item"+itemid)) {
+            Item item = getByKey("map" + siteid, "item" + itemid, Item.class);
+            return item;
+        }
+            Item item = itemMapper.selectByPrimaryKey(itemid);
+            setValue(item,expire);
+            return item;
+
     }
 }

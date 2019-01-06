@@ -155,4 +155,7 @@
   <select id="selectNewItem" resultType="com.reader.rss.pojo.Item">
   select *from item where item_id=(select max(item_id) from item)
 </select>
+  <select id="selectBySiteid" resultType="com.reader.rss.pojo.Item">
+    select * from item where site_id = #{siteid}
+  </select>
 </mapper>

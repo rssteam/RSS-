@@ -92,4 +92,7 @@
       birth = #{birth,jdbcType=DATE}
     where account_id = #{accountId,jdbcType=VARCHAR}
   </update>
+  <select id="selectNewUser" resultType="com.reader.rss.pojo.User">
+  select *from user where account_id=(select max(account_id) from user)
+</select>
 </mapper>

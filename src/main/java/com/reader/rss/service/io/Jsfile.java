@@ -36,7 +36,7 @@ public class Jsfile implements IJsfile {
     private final  static String title_icon = "http://[^/]+";
     private final  static String hreix = "/favicon.";
     private final  static String[] origin_charcter = {"&lt;","&gt;","&amp;","&quot;","&nbsp;","&apos;","\n"," ","<!--.*-->","<!\\[CDATA\\[","]]>"};
-    private final  static String[] new_charcter = {"<",">","&","\"","","'","","","","",""};
+    private final  static String[] new_charcter = {"<",">","&","\"","","'",""," ","","",""};
     @Autowired
     WebDriver driver;
     @Override
@@ -215,7 +215,7 @@ public class Jsfile implements IJsfile {
         Matcher matcher = pattern.matcher(page);
         page = matcher.replaceAll(new_charcter[i]);
     }
-        System.out.println(page);
+//        System.out.println(page);
         page = page.split("<rss")[1];
         page = page.split("</rss>")[0];
         String[] strings = page.split("<title>");
@@ -224,11 +224,11 @@ public class Jsfile implements IJsfile {
 
     @Override
     public List<Content> reslovHtml(String url) {
-        String url_icon = getTitleiconByUrl(url);
+//        String url_icon = getTitleiconByUrl(url);
         driver.get(url);
-       System.out.println(url_icon);
-        if(url_icon == null)
-            url_icon = getTitleiconByPage(driver.getPageSource());
+//       System.out.println(url_icon);
+/*        if(url_icon == null)
+            url_icon = getTitleiconByPage(driver.getPageSource());*/
 //        System.out.println(driver.getPageSource());
         String[] Items = trimPage(driver.getPageSource());
         String[] res = new String[charcter.length+1];
@@ -255,7 +255,7 @@ public class Jsfile implements IJsfile {
                     res[j] = "";
                 }
             }
-            list.add(new Content(res[0],res[1],res[2],res[4],"",url_icon));
+            list.add(new Content(res[0],res[1],res[2].substring(0,min(60,res[2].length())),res[4],"",""));
         }
         return list;
     }
@@ -288,17 +288,14 @@ public class Jsfile implements IJsfile {
         matcher = pattern.matcher(Url);
             if(matcher.find()) {
                 String a = matcher.group() + hreix + "ico";
-                System.out.println(a);
+//                String origin_url = driver.getCurrentUrl();
                 driver.get(a);
                 String u = driver.getPageSource();
-                System.out.println("_______________________________________________________________");
-               System.out.println(u);
-                System.out.println("_______________________________________________________________");
-                pattern = Pattern.compile("<img[^>]+");
+//                driver.get(origin_url);
+              pattern = Pattern.compile("<img[^>]+");
                 matcher = pattern.matcher(u);
                 if(matcher.find()) {
                     String str = matcher.group();
-                    System.out.println(str);
                     pattern = Pattern.compile("http[s]{0,1}://.*ico");
                     matcher = pattern.matcher(str);
                     if (matcher.find()) return matcher.group();
@@ -313,14 +310,25 @@ public class Jsfile implements IJsfile {
         Matcher matcher = pattern.matcher(page);
         if(matcher.find()){
             String res = matcher.group();
-            pattern = Pattern.compile("http.*[^\"]+");
+            pattern = Pattern.compile("http[^\"]+");
             matcher = pattern.matcher(res);
             if(matcher.find()){
                 res = matcher.group();
+                System.out.println(res);
                 return res;
             }
         }
         return "default.jpg";
+    }
+
+    @Override
+    public String getIcon(String url) {
+        String icon_url = getTitleiconByUrl(url);
+        if(icon_url == null){
+            driver.get(url);
+            icon_url = getTitleiconByPage(driver.getPageSource());
+        }
+        return icon_url;
     }
 }
 

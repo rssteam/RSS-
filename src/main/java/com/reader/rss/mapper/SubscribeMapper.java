@@ -2,6 +2,9 @@ package com.reader.rss.mapper;
 
 import com.reader.rss.pojo.Subscribe;
 import org.apache.ibatis.annotations.Mapper;
+import org.springframework.data.repository.query.Param;
+
+import java.util.List;
 
 @Mapper
 public interface SubscribeMapper {
@@ -16,4 +19,8 @@ public interface SubscribeMapper {
     int updateByPrimaryKeySelective(Subscribe record);
 
     int updateByPrimaryKey(Subscribe record);
+
+    List<Subscribe> getSubscribeByUid(String accountId);
+
+    void deleteById(@Param("uid") String accountId, @Param("siteid") int siteid);
 }

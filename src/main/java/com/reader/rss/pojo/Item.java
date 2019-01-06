@@ -23,6 +23,22 @@ public class Item {
 
     private String itemPic;
 
+    @Override
+    public String toString() {
+        return "Item{" +
+                "itemId=" + itemId +
+                ", itemTitle='" + itemTitle + '\'' +
+                ", itemUrl='" + itemUrl + '\'' +
+                ", siteId=" + siteId +
+                ", favNum=" + favNum +
+                ", likeNum=" + likeNum +
+                ", itemDate=" + itemDate +
+                ", itemIcon='" + itemIcon + '\'' +
+                ", itemDes='" + itemDes + '\'' +
+                ", itemPic='" + itemPic + '\'' +
+                '}';
+    }
+
     public Item(Integer itemId, String itemTitle, String itemUrl, Integer siteId, Integer favNum, Integer likeNum, Date itemDate, String itemIcon, String itemDes, String itemPic) {
         this.itemId = itemId;
         this.itemTitle = itemTitle;

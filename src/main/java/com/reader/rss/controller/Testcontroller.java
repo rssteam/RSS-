@@ -11,6 +11,8 @@ import com.reader.rss.service.resolvexml.IStorageXml;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 public class Testcontroller {
     @Autowired
@@ -25,7 +27,7 @@ public class Testcontroller {
     /*
      @Autowired(required = false)
     UserMapper usermapper;*/
-    public Item index(String path) throws Exception{
+    public List<Item> index(String path) throws Exception{
 //        jsfile.reShowHtml("https://"+path);
 //        jsfile.IO("http://www."+path+".com/");
 //        Thread.sleep(10000);
@@ -34,11 +36,17 @@ public class Testcontroller {
 //        System.out.println("1111111111111");
 //        usermapper.addUser(new User("2","1","1","1","1991-1-1"));
 //        return  usermapper.selectByPrimaryKey("1");
-        Site site = new Site();
+/*        Site site = new Site();
         site.setSiteUrl("http://www.cnbeta.com/backend.php");
+        http://www.ft.com/rss/home/asia
+        http://blog.sina.com.cn/rss/1092672395.xml
         iredisservice.addSite(site);
-//        storageXml.updateRssSource(site);
+        storageXml.updateAllSite();*/
+        Site site = new Site("网站:喷嚏网","http://www.dapenti.com/blog/rss2.asp?name=xilei","");
+        site = storageXml.addNewSite(site);
         storageXml.updateAllSite();
-        return iredisservice.getByKey("map"+17,"https://www.cnbeta.com/articles/tech/805373.htm",Item.class);
+        List<Item> list = storageXml.getSiteItems(site.getSiteId());
+        return list;
+//        return iredisservice.getByKey("map"+17,"https://www.cnbeta.com/articles/tech/805373.htm",Item.class);
     }
 }

@@ -14,4 +14,5 @@ public interface IJsfile {
     String getTitleiconByPage(String source);//由html得到标题图标
     String getTitleiconByUrl(String Url);//由Url得到标题图标
     String getPicture(String page);
+    String getIcon(String url);
 }

@@ -19,6 +19,20 @@ public class Site {
         this.siteCondition = siteCondition;
     }
 
+    public Site(String siteTitle, String siteUrl, String siteCondition) {
+        this.siteTitle = siteTitle;
+        this.siteUrl = siteUrl;
+        this.siteCondition = siteCondition;
+    }
+
+    public Site(Site site) {
+        this.siteId = site.getSiteId();
+        this.siteTitle = site.getSiteTitle();
+        this.siteIcon = site.getSiteIcon();
+        this.siteUrl = site.getSiteUrl();
+        this.siteCondition = site.getSiteCondition();
+    }
+
     public Site() {
         super();
     }

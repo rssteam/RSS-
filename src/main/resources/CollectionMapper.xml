@@ -70,4 +70,11 @@
       account_id = #{accountId,jdbcType=VARCHAR}
     where col_id = #{colId,jdbcType=INTEGER}
   </update>
+  <select id="getCollectionsByUid" resultType="com.reader.rss.pojo.Collection">
+    select *from collection where account_id=#{accountId}
+  </select>
+
+  <delete id="deleteCollectionsByUid">
+    delete from collection where account_id=#{accountId} and item_id=#{itemid}
+  </delete>
 </mapper>

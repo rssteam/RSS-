@@ -81,4 +81,10 @@
       account_id = #{accountId,jdbcType=VARCHAR}
     where sub_id = #{subId,jdbcType=INTEGER}
   </update>
+  <select id="getSubscribeByUid" resultType="com.reader.rss.pojo.Subscribe">
+    select *from subscribe where account_id = #{accountId}
+  </select>
+  <delete id="deleteById">
+    delete from subscribe where site_id=#{siteid} and account_id=#{accountId}
+  </delete>
 </mapper>
