@@ -8,6 +8,8 @@ import com.reader.rss.pojo.*;
 import com.reader.rss.service.io.IJsfile;
 import com.reader.rss.service.redisservice.Iredisservice;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Async;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 import java.io.RandomAccessFile;
@@ -18,6 +20,7 @@ import java.util.Map;
 
 @Service
 public class StorageXml implements IStorageXml {
+    private List<Site> siteList = new ArrayList<>();
     @Autowired
     private IJsfile jsfile;
     @Autowired
@@ -38,6 +41,29 @@ public class StorageXml implements IStorageXml {
     }
 
     @Override
+    @Async
+    @Scheduled(fixedDelay = 100)
+    public void updateSite() {
+        Site site = null;
+        synchronized (siteList){
+            if(siteList.size() > 0) {
+                System.out.println("缓存中Site数目："+siteList.size());
+                site = siteList.get(0);
+                siteList.remove(0);
+            }
+        }
+        if(site != null) {
+            List<Item> list = new ArrayList<>(convertXmltoItem(site.getSiteUrl()));
+            synchronized (redisservice) {
+                System.out.println("更新中...");
+                redisservice.updateItemValue(list, site);
+            }
+        }
+    }
+
+
+
+    @Override
     public List<Item> convertXmltoItem(String url) {
         List<Item> res = new ArrayList<>();
         List<Content> list = jsfile.reslovHtml(url);
@@ -49,11 +75,15 @@ public class StorageXml implements IStorageXml {
 
     //取得所有网站更新页面
     @Override
+    @Scheduled(fixedDelay = 10000)
     public void updateAllSite() {
-        List<Site> list = redisservice.preUpdate();
-        for(Site site:list){
-            updateRssSource(site);
+//        List<Site> list = new ArrayList<>(redisservice.preUpdate());
+        synchronized (siteList) {
+            siteList.addAll(redisservice.preUpdate());
         }
+/*        for(Site site:list){
+            updateRssSource(site);
+        }*/
     }
 
     //取得某网站Site

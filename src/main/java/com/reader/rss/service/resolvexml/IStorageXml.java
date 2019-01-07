@@ -25,4 +25,5 @@ public interface IStorageXml {
     User getUserInfo(String uid);
     Item getOneItem(int itemid);
     Item getOneItem(int siteid,int itemid);
+    void updateSite();
 }

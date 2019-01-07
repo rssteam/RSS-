@@ -42,10 +42,18 @@ public class Testcontroller {
         http://blog.sina.com.cn/rss/1092672395.xml
         iredisservice.addSite(site);
         storageXml.updateAllSite();*/
-        Site site = new Site("网站:喷嚏网","http://www.dapenti.com/blog/rss2.asp?name=xilei","");
+        Site site = new Site("网站:艾帆网","http://www.ifanr.com/feed","");
         site = storageXml.addNewSite(site);
-        storageXml.updateAllSite();
-        List<Item> list = storageXml.getSiteItems(site.getSiteId());
+        Site site1 = new Site("网站:cnbeta","http://www.cnbeta.com/backend.php","");
+        site = storageXml.addNewSite(site1);
+//        storageXml.updateAllSite();
+//        List<Item> list = storageXml.getSiteItems(site.getSiteId());
+/*        storageXml.getOneSite(1);
+        storageXml.getOneSite(2);
+        storageXml.addNewSite(site);
+        Thread.sleep(5000);*/
+        List<Item> list = iredisservice.getMap("map"+1,Item.class);
+        list.addAll(iredisservice.getMap("map"+2,Item.class));
         return list;
 //        return iredisservice.getByKey("map"+17,"https://www.cnbeta.com/articles/tech/805373.htm",Item.class);
     }

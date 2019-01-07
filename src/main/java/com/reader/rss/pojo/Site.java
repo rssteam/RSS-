@@ -11,6 +11,17 @@ public class Site {
 
     private String siteCondition;
 
+    @Override
+    public String toString() {
+        return "Site{" +
+                "siteId=" + siteId +
+                ", siteTitle='" + siteTitle + '\'' +
+                ", siteIcon='" + siteIcon + '\'' +
+                ", siteUrl='" + siteUrl + '\'' +
+                ", siteCondition='" + siteCondition + '\'' +
+                '}';
+    }
+
     public Site(Integer siteId, String siteTitle, String siteIcon, String siteUrl, String siteCondition) {
         this.siteId = siteId;
         this.siteTitle = siteTitle;

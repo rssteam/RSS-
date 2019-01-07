@@ -14,6 +14,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.support.SimpleTriggerContext;
 import org.springframework.stereotype.Service;
@@ -33,7 +34,7 @@ public class Jsfile implements IJsfile {
     private final  static String jspath = "<script type=\"text/javascript\" src=\"attack.js\"></script>\r\n";
     private final  static String[] charcter = {".*</title>","<link>.*</link>","<description>.*</description>","<pubDate>.*</pubDate>"};
     private final  static String str = "<[^>]+>";
-    private final  static String title_icon = "http://[^/]+";
+    private final  static String title_icon = "http[s]{0,1}://[^/]+";
     private final  static String hreix = "/favicon.";
     private final  static String[] origin_charcter = {"&lt;","&gt;","&amp;","&quot;","&nbsp;","&apos;","\n"," ","<!--.*-->","<!\\[CDATA\\[","]]>"};
     private final  static String[] new_charcter = {"<",">","&","\"","","'",""," ","","",""};
@@ -41,6 +42,8 @@ public class Jsfile implements IJsfile {
     WebDriver driver;
     @Override
     public void reShowHtml(String url) throws Exception{
+        System.setProperty("webdriver.chrome.driver","chromedriver.exe");
+        WebDriver driver1 =  new ChromeDriver(new ChromeOptions().addArguments("--headless","--disable-gpu"));
         int start = url.indexOf("www");
         int end = url.indexOf("\\",start)-1;
         if(end == -2)
@@ -50,16 +53,16 @@ public class Jsfile implements IJsfile {
         if(file.exists())
             file.delete();
         RandomAccessFile temp = new RandomAccessFile("src\\main\\resources\\"+fileName+"_temp.html","rw");
-        driver.get(url);
-        for (int i = 0; i < 5; i++) {
-            ((JavascriptExecutor) driver).executeScript("window.scrollTo(0, document.body.scrollHeight)");
-        }
+            driver1.get(url);
+            for (int i = 0; i < 5; i++) {
+                ((JavascriptExecutor) driver1).executeScript("window.scrollTo(0, document.body.scrollHeight)");
+            }
         try {
             Thread.sleep(5000);
         } catch (InterruptedException e){
             e.printStackTrace();
         }
-        StringBuilder html = new StringBuilder(driver.getPageSource());
+        StringBuilder html = new StringBuilder(driver1.getPageSource());
         int pos = html.indexOf("</head>");
         html.insert(pos,jspath);
         String content  = new String((""+html).getBytes("utf-8"),"utf-8");
@@ -90,8 +93,11 @@ public class Jsfile implements IJsfile {
 
     @Override
     public List<Content> createXML(String url) throws Exception{
-           driver.get(url);
-           String html = driver.getPageSource();
+        String html = "";
+        synchronized (driver) {
+            driver.get(url);
+            html = driver.getPageSource();
+        }
             int start = html.indexOf("<rss");
                 if (start == -1) {
                     start = html.indexOf("&lt;rss");
@@ -168,7 +174,7 @@ public class Jsfile implements IJsfile {
 
         Pattern desc = Pattern.compile("(<description>|<description />){1}.*(</description>){1}");
 //        content = trimPage(content);
-        System.out.println(content);
+//        System.out.println(content);
         Matcher matcher = desc.matcher(content);
 //        Pattern url2 = Pattern.compile("(http){1}.*");
         Matcher matcher2,matcher3;
@@ -179,7 +185,7 @@ public class Jsfile implements IJsfile {
         List<String> list = new ArrayList<String>();
         while(matcher.find()){
             string = matcher.group();
-            System.out.println(string+"\n");
+//            System.out.println(string+"\n");
             matcher3 = p.matcher(string);
 //            System.out.println(string);
 //            System.out.println(matcher3.replaceAll("")+"+++++=+++++++");
@@ -225,12 +231,16 @@ public class Jsfile implements IJsfile {
     @Override
     public List<Content> reslovHtml(String url) {
 //        String url_icon = getTitleiconByUrl(url);
-        driver.get(url);
+        String page = "";
+        synchronized (driver) {
+            driver.get(url);
+            page = driver.getPageSource();
+        }
 //       System.out.println(url_icon);
 /*        if(url_icon == null)
             url_icon = getTitleiconByPage(driver.getPageSource());*/
 //        System.out.println(driver.getPageSource());
-        String[] Items = trimPage(driver.getPageSource());
+        String[] Items = trimPage(page);
         String[] res = new String[charcter.length+1];
         Pattern pattern = null;
         Matcher matcher = null;
@@ -289,8 +299,11 @@ public class Jsfile implements IJsfile {
             if(matcher.find()) {
                 String a = matcher.group() + hreix + "ico";
 //                String origin_url = driver.getCurrentUrl();
-                driver.get(a);
-                String u = driver.getPageSource();
+                String u = "";
+                synchronized (driver) {
+                    driver.get(a);
+                    u = driver.getPageSource();
+                }
 //                driver.get(origin_url);
               pattern = Pattern.compile("<img[^>]+");
                 matcher = pattern.matcher(u);
@@ -314,7 +327,7 @@ public class Jsfile implements IJsfile {
             matcher = pattern.matcher(res);
             if(matcher.find()){
                 res = matcher.group();
-                System.out.println(res);
+//                System.out.println(res);
                 return res;
             }
         }
@@ -325,8 +338,10 @@ public class Jsfile implements IJsfile {
     public String getIcon(String url) {
         String icon_url = getTitleiconByUrl(url);
         if(icon_url == null){
-            driver.get(url);
-            icon_url = getTitleiconByPage(driver.getPageSource());
+            synchronized (driver) {
+                driver.get(url);
+                icon_url = getTitleiconByPage(driver.getPageSource());
+            }
         }
         return icon_url;
     }
