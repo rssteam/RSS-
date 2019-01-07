@@ -12,9 +12,6 @@ import java.util.concurrent.Executor;
 @Configuration
 @EnableAsync
 public class MySchedule {
-    /*
-   此处成员变量应该使用@Value从配置中读取
-    */
     private int corePoolSize = 10;
     private int maxPoolSize = 200;
     private int queueCapacity = 10;

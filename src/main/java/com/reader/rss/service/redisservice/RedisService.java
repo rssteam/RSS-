@@ -1,17 +1,10 @@
 package com.reader.rss.service.redisservice;
-
-import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONObject;
-import com.alibaba.fastjson.serializer.SerializerFeature;
 import com.reader.rss.mapper.ItemMapper;
 import com.reader.rss.mapper.SiteMapper;
-import com.reader.rss.pojo.Collection;
 import com.reader.rss.pojo.Item;
 import com.reader.rss.pojo.Site;
 import com.reader.rss.service.io.IJsfile;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.redis.core.HashOperations;
-import org.springframework.data.redis.core.SetOperations;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Service;
 
@@ -43,7 +36,7 @@ public class RedisService implements Iredisservice {
         if(res != null){
             if(mapkey.equals("mapsite")){
                 setValue(key,res,expire);
-                System.out.println(Jutil.convertString2Obj(res,tClass));
+//                System.out.println(Jutil.convertString2Obj(res,tClass));
             }
             return Jutil.convertString2Obj(res,tClass);
         }
