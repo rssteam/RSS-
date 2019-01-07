@@ -58,9 +58,19 @@ public class RedisService implements Iredisservice {
         Set set = redisTemplate.opsForHash().keys(mapkey);
         Iterator iterator = set.iterator();
         while (iterator.hasNext()){
+            list.add(getByKey(mapkey,(String)iterator.next(),tClass));
+        }
+        return list;
+    }
+
+    @Override
+    public <T> List<T> getMapWithoutUpdateExpire(String mapkey, Class<T> tClass) {
+        List<T> list = new ArrayList<>();
+        Set set = redisTemplate.opsForHash().keys(mapkey);
+        Iterator iterator = set.iterator();
+        while (iterator.hasNext()){
             list.add(getByKeyWithoutUpdateExpire(mapkey,(String)iterator.next(),tClass));
         }
-//        System.out.println(list.size());
         return list;
     }
 
@@ -98,7 +108,7 @@ public class RedisService implements Iredisservice {
         Iterator iterator = set.iterator();
         while(iterator.hasNext()){
             key = (String) iterator.next();
-            var = getByKey("map"+site.getSiteId(),key,Item.class);
+            var = getByKeyWithoutUpdateExpire("map"+site.getSiteId(),key,Item.class);
             if(map.containsKey(var.getItemUrl())){
                 map.remove(var.getItemUrl());
             }
@@ -161,7 +171,7 @@ public class RedisService implements Iredisservice {
     @Override
     public List<Site> preUpdate() {
 //        System.out.println("preUpdate");
-        List<Site> list = getMap("mapsite",Site.class);
+        List<Site> list = getMapWithoutUpdateExpire("mapsite",Site.class);
         for(int i = 0;i < list.size();++i){
             if(!isExists("site"+list.get(i).getSiteId())){
                 redisTemplate.opsForHash().delete("mapsite","site"+list.get(i).getSiteId());
