@@ -20,7 +20,7 @@ import java.util.concurrent.TimeUnit;
 
 @Service
 public class RedisService implements Iredisservice {
-    private static final int  expire = 1*60*60;
+    private static final int  expire = 1*60*60;//Site缓存时间一小时，获取后自动更新时间
     @Autowired
     private StringRedisTemplate redisTemplate;
     @Autowired(required = false)
@@ -41,19 +41,33 @@ public class RedisService implements Iredisservice {
     public <T> T getByKey(String mapkey,String key,Class<T> tClass) {
         String res = (String) redisTemplate.opsForHash().get(mapkey,key);
         if(res != null){
+            if(mapkey.equals("mapsite")){
+                setValue(key,res,expire);
+                System.out.println(Jutil.convertString2Obj(res,tClass));
+            }
             return Jutil.convertString2Obj(res,tClass);
         }
         return null;
     }
 
+    //获取后不更新Expire时间
+    @Override
+    public <T> T getByKeyWithoutUpdateExpire(String mapkey,String key,Class<T> tClass) {
+        String res = (String) redisTemplate.opsForHash().get(mapkey,key);
+        if(res != null){
+            return Jutil.convertString2Obj(res,tClass);
+        }
+        return null;
+    }
     @Override
     public <T> List<T> getMap(String mapkey,Class<T> tClass) {
         List<T> list = new ArrayList<>();
         Set set = redisTemplate.opsForHash().keys(mapkey);
         Iterator iterator = set.iterator();
         while (iterator.hasNext()){
-            list.add(getByKey(mapkey,(String)iterator.next(),tClass));
+            list.add(getByKeyWithoutUpdateExpire(mapkey,(String)iterator.next(),tClass));
         }
+//        System.out.println(list.size());
         return list;
     }
 
@@ -153,6 +167,7 @@ public class RedisService implements Iredisservice {
 
     @Override
     public List<Site> preUpdate() {
+//        System.out.println("preUpdate");
         List<Site> list = getMap("mapsite",Site.class);
         for(int i = 0;i < list.size();++i){
             if(!isExists("site"+list.get(i).getSiteId())){

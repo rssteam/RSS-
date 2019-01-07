@@ -78,6 +78,7 @@ public class StorageXml implements IStorageXml {
     @Scheduled(fixedDelay = 10000)
     public void updateAllSite() {
 //        List<Site> list = new ArrayList<>(redisservice.preUpdate());
+//        System.out.println("取得所有网站更新页面");
         synchronized (siteList) {
             siteList.addAll(redisservice.preUpdate());
         }

@@ -25,4 +25,5 @@ public interface Iredisservice {
     boolean isExistsMapKey(String mapkey,String key);
     Item getItem(int itemid);
     Item getItem(int itemid,int siteid);
+    <T> T getByKeyWithoutUpdateExpire(String mapkey,String key,Class<T> tClass);
 }
