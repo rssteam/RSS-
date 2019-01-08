@@ -48,12 +48,13 @@ public class Testcontroller {
         site = storageXml.addNewSite(site1);*/
 //        storageXml.updateAllSite();
 //        List<Item> list = storageXml.getSiteItems(site.getSiteId());
-        storageXml.getOneSite(1);
-        storageXml.getOneSite(2);
+/*        storageXml.getOneSite(1);
+        storageXml.getOneSite(2);*/
 //        storageXml.addNewSite(site);
 //        Thread.sleep(5000);
-        List<Item> list = iredisservice.getMap("map"+1,Item.class);
-        list.addAll(iredisservice.getMap("map"+2,Item.class));
+//        List<Item> list = iredisservice.getMap("map"+1,Item.class);
+//        list.addAll(iredisservice.getMap("map"+2,Item.class));
+          List<Item> list = storageXml.getSiteItems(4);
         return list;
 //        return iredisservice.getByKey("map"+17,"https://www.cnbeta.com/articles/tech/805373.htm",Item.class);
     }

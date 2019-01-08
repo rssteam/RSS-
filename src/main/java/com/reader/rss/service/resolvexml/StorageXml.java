@@ -1,9 +1,6 @@
 package com.reader.rss.service.resolvexml;
 
-import com.reader.rss.mapper.CollectionMapper;
-import com.reader.rss.mapper.SiteMapper;
-import com.reader.rss.mapper.SubscribeMapper;
-import com.reader.rss.mapper.UserMapper;
+import com.reader.rss.mapper.*;
 import com.reader.rss.pojo.*;
 import com.reader.rss.service.io.IJsfile;
 import com.reader.rss.service.redisservice.Iredisservice;
@@ -33,11 +30,17 @@ public class StorageXml implements IStorageXml {
     private CollectionMapper collectionMapper;
     @Autowired(required = false)
     private UserMapper userMapper;
+    @Autowired(required = false)
+    ItemMapper itemMapper;
     //更新某网站的Item
     @Override
     public void updateRssSource(Site site) {
-        List<Item> list = new ArrayList<>(convertXmltoItem(site.getSiteUrl()));
-        redisservice.updateItemValue(list,site);
+        if(site != null) {
+            List<Item> list = new ArrayList<>(convertXmltoItem(site.getSiteUrl()));
+            synchronized (redisservice) {
+                redisservice.updateItemValue(list, site);
+            }
+        }
     }
 
     @Override
@@ -120,11 +123,35 @@ public class StorageXml implements IStorageXml {
 
     //获取某网页所有Item
     @Override
-    public List<Item> getSiteItems(int siteid) {
+    public List<Item> getSiteItems(int siteid){
+        if(getOneSite(siteid) == null) {
+            System.out.println("不存在Site");
+            return null;
+        }
         List<Item> list = redisservice.getSiteItems(siteid);
         if(list.size() > 0)return list;
+        updateRssSource(getOneSite(siteid));
+        int trycount = 0;
+        while((list = redisservice.getSiteItems(siteid)).size() == 0){
+            trycount++;
+        try {
+            Thread.sleep(500);
+        }catch (Exception e){
+            System.out.println("获取Item异常");
+        }
+        if(trycount > 10){
+        list = itemMapper.selectBysiteid(siteid);
+        if(list != null && list.size() > 0) {
+            redisservice.updateItemValue(list, redisservice.getSite(siteid));
+            return list;
+        }else{
+            System.out.println("数据库及网页都无Item");
+            return null;
+        }
+        }
+        }
         System.out.println("空Item");
-        return null;
+        return list;
     }
 
     @Override
