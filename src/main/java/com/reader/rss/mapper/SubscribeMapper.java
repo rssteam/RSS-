@@ -21,6 +21,7 @@ public interface SubscribeMapper {
     int updateByPrimaryKey(Subscribe record);
 
     List<Subscribe> getSubscribeByUid(String accountId);
+    List<Subscribe> getSubscribeByUidandGroupid(String accountId,int groupid);
 
     void deleteById(@Param("uid") String accountId, @Param("siteid") int siteid);
 }

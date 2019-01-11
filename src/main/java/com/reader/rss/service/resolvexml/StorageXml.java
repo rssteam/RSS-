@@ -1,10 +1,8 @@
 package com.reader.rss.service.resolvexml;
 
-import com.reader.rss.mapper.CollectionMapper;
-import com.reader.rss.mapper.SiteMapper;
-import com.reader.rss.mapper.SubscribeMapper;
-import com.reader.rss.mapper.UserMapper;
+import com.reader.rss.mapper.*;
 import com.reader.rss.pojo.*;
+import com.reader.rss.pojo.Collection;
 import com.reader.rss.service.io.IJsfile;
 import com.reader.rss.service.redisservice.Iredisservice;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,10 +11,7 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 import java.io.RandomAccessFile;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Service
 public class StorageXml implements IStorageXml {
@@ -33,6 +28,8 @@ public class StorageXml implements IStorageXml {
     private CollectionMapper collectionMapper;
     @Autowired(required = false)
     private UserMapper userMapper;
+    @Autowired(required = false)
+    private UserGroupMapper userGroupMapper;
     //更新某网站的Item
     @Override
     public void updateRssSource(Site site) {
@@ -47,7 +44,7 @@ public class StorageXml implements IStorageXml {
         Site site = null;
         synchronized (siteList){
             if(siteList.size() > 0) {
-                System.out.println("缓存中Site数目："+siteList.size());
+//                System.out.println("缓存中Site数目："+siteList.size());
                 site = siteList.get(0);
                 siteList.remove(0);
             }
@@ -55,7 +52,7 @@ public class StorageXml implements IStorageXml {
         if(site != null) {
             List<Item> list = new ArrayList<>(convertXmltoItem(site.getSiteUrl()));
             synchronized (redisservice) {
-                System.out.println("更新中...");
+//                System.out.println("更新中...");
                 redisservice.updateItemValue(list, site);
             }
         }
@@ -104,6 +101,7 @@ public class StorageXml implements IStorageXml {
         for(int i = 0;i < list.size();++i){
             list_item.addAll(getSiteItems(list.get(i).getSiteId()));
         }
+        list_item.sort(Comparator.comparing(Item::getItemDate).reversed());
         return list_item;
     }
 
@@ -118,11 +116,28 @@ public class StorageXml implements IStorageXml {
         return list_site;
     }
 
+    @Override
+    public  Map<String,List<Site>> getUserGroupSites(String uid) {
+        Map<String,List<Site>> map= new HashMap<String, List<Site>>();
+        //map (key=用户ID_组ID,value=listsite)
+        List<UserGroup> userGroups=userGroupMapper.selectByUid(uid);
+        for (int i=0;i< userGroups.size();i++){
+            List<Subscribe> subscribes=subscribeMapper.getSubscribeByUidandGroupid(uid,userGroups.get(i).getGroupId());
+            List<Site> user_gropu_list =new ArrayList<>();
+            for (int j = 0;j < subscribes.size();j++){
+                user_gropu_list.add(getOneSite(subscribes.get(j).getSiteId()));
+             }
+            map.put(userGroups.get(i).getGroupId()+"",user_gropu_list);
+        }
+        return map;
+    }
     //获取某网页所有Item
     @Override
     public List<Item> getSiteItems(int siteid) {
         List<Item> list = redisservice.getSiteItems(siteid);
-        if(list.size() > 0)return list;
+        if(list.size() > 0)
+        { list.sort(Comparator.comparing(Item::getItemDate).reversed());
+            return list;}
         System.out.println("空Item");
         return null;
     }
@@ -167,21 +182,26 @@ public class StorageXml implements IStorageXml {
 
     //关注网站
     @Override
-    public boolean favSite(String uid, int siteid) {
-        return false;
+    public int subSite(String uid, int siteid,int groupid){
+        return subscribeMapper.insert(new Subscribe(null,siteid,groupid,uid));
     }
 
     //收藏Item
     @Override
     public boolean favItem(String uid, int Itemid) {
-        return false;
+        if (collectionMapper.insert(new Collection(null,Itemid,uid))>0){
+            return  true;
+        }
+        else {return false;}
     }
 
     //更新Item点赞，收藏等
     @Override
     public Item updateItem(Item item) {
         redisservice.updateItemAttrubite(item);
-        return getOneItem(item.getSiteId(),item.getItemId());
+        Item item1=getOneItem(item.getItemId(),item.getSiteId());
+
+        return  item1;
     }
 
     @Override

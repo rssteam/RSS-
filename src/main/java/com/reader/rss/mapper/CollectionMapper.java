@@ -22,4 +22,5 @@ public interface CollectionMapper {
     List<Collection> getCollectionsByUid(String accountId);
 
     void deleteCollectionsByUid(String uid,int itemid);
+    List<Collection> checkCollection(Integer itemId,String accountId);
 }

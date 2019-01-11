@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head>
 
@@ -10,19 +10,21 @@
     <meta name="author" content="">
 
     <title>RSS关注你的订阅</title>
-    <link rel="icon" href="../img/rssicon.jpg" type="img/x-ico" />
+    <link rel="icon" href="/img/rssicon.jpg"  type="img/x-ico" />
     <!-- Bootstrap Core CSS -->
-    <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- MetisMenu CSS -->
-    <link href="../vendor/metisMenu/metisMenu.min.css" rel="stylesheet">
+    <link href="/vendor/metisMenu/metisMenu.min.css" rel="stylesheet">
 
     <!-- Custom CSS -->
-    <link href="../dist/css/sb-admin-2.css" rel="stylesheet">
+    <link href="/dist/css/sb-admin-2.css" rel="stylesheet">
 
     <!-- Custom Fonts -->
-    <link href="../vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-    <link rel="stylesheet" href="../dist/css/main.css">
+    <link href="/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="/dist/css/main.css">
+
+
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -35,12 +37,12 @@
 
 <body>
 <button id="btn_top"  >
-    <span class="glyphicon glyphicon-menu-up ">回到顶部</span>
+    <span class="glyphicon glyphicon-menu-up " style="font-size: x-large"></span>
 </button>
 <div id="wrapper">
 
     <!-- Navigation -->
-    <nav class="navbar navbar-default navbar-fixed-top " role="navigation" style="margin-bottom: 0">
+    <nav class="navbar navbar-default navbar-fixed-top " role="navigation" style="margin-bottom: 0" >
         <div class="navbar-header">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                 <span class="sr-only">Toggle navigation</span>
@@ -48,17 +50,16 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#"  >RSS</a>
+            <a class="navbar-brand" href="#"  ></a>
         </div>
         <!-- /.navbar-header -->
         <ul class="nav navbar-nav">
-            <li><a href="blank.html">首页</a></li>
+            <li><a href="/">首页</a></li>
             <li ><a href="#" id="subscribe">订阅源</a></li>
-            <li><a href="#">自定义</a></li>
+            <li><a href="#"id="HOME"  >自定义</a></li>
             <li><a href="#">数读</a></li>
             <li><a href="#">军事</a></li>
             <li><a href="#">政务</a></li>
-            <li><a href="#">公益</a></li>
         </ul>
         <ul class="nav navbar-top-links navbar-right">
             <li class="dropdown">
@@ -287,104 +288,13 @@
                     <li>
                         <a href="#" id="showAll"><i class="glyphicon glyphicon-th-large"></i> 全部显示</a>
                     </li>
-                    <li>
-                        <a href="#"><i class="glyphicon glyphicon-th-list"></i> Charts<span class="fa arrow"></span></a>
+                    <li th:each="userGroup:${userGroups}">
+                        <a href="#"><i class="glyphicon glyphicon-th-list" ></i> [[${userGroup.groupTitle}]]<span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
-                            <li>
-                                <a href="flot.html">Flot Charts</a>
-                            </li>
-                            <li>
-                                <a href="morris.html">Morris.js Charts</a>
+                            <li  th:each="site:${userGroupSites.get(userGroup.groupId+'')}">
+                                <a href="#" class="choosedSite"  ><label hidden="hidden">[[${site.siteId}]]</label><img class="avatar" src="/img/004.jpg" th:src="@{${site.siteIcon}}" style="width: 30px;height: 30px"><B style="margin-left: 10px">[[${site.siteTitle}]]</B></a>
                             </li>
                         </ul>
-                        <!-- /.nav-second-level -->
-                    </li>
-                    <li>
-                        <a href="#"><i class="glyphicon glyphicon-th-list"></i> UI Elements<span class="fa arrow"></span></a>
-                        <ul class="nav nav-second-level">
-                            <li>
-                                <a href="panels-wells.html">Panels and Wells</a>
-                            </li>
-                            <li>
-                                <a href="buttons.html">Buttons</a>
-                            </li>
-                            <li>
-                                <a href="notifications.html">Notifications</a>
-                            </li>
-
-                            <li>
-                                <a href="typography.html">Typography</a>
-                            </li>
-                            <li>
-                                <a href="icons.html"> Icons</a>
-                            </li>
-                            <li>
-                                <a href="grid.html">Grid</a>
-                            </li>
-                        </ul>
-                        <!-- /.nav-second-level -->
-                    </li>
-                    <li>
-                        <a href="#"><i class="glyphicon glyphicon-th-list"></i> UI Elements<span class="fa arrow"></span></a>
-                        <ul class="nav nav-second-level">
-                            <li>
-                                <a href="panels-wells.html">Panels and Wells</a>
-                            </li>
-                            <li>
-                                <a href="buttons.html">Buttons</a>
-                            </li>
-                            <li>
-                                <a href="notifications.html">Notifications</a>
-                            </li>
-
-                            <li>
-                                <a href="typography.html">Typography</a>
-                            </li>
-                            <li>
-                                <a href="icons.html"> Icons</a>
-                            </li>
-                            <li>
-                                <a href="grid.html">Grid</a>
-                            </li>
-                        </ul>
-                        <!-- /.nav-second-level -->
-                    </li>
-                    <li>
-                        <a href="#"><i class="glyphicon glyphicon-th-list"></i> UI Elements<span class="fa arrow"></span></a>
-                        <ul class="nav nav-second-level">
-                            <li>
-                                <a href="panels-wells.html">Panels and Wells</a>
-                            </li>
-                            <li>
-                                <a href="buttons.html">Buttons</a>
-                            </li>
-                            <li>
-                                <a href="notifications.html">Notifications</a>
-                            </li>
-
-                            <li>
-                                <a href="typography.html">Typography</a>
-                            </li>
-                            <li>
-                                <a href="icons.html"> Icons</a>
-                            </li>
-                            <li>
-                                <a href="grid.html">Grid</a>
-                            </li>
-                        </ul>
-                        <!-- /.nav-second-level -->
-                    </li>
-                    <li >
-                        <a href="#"><i class="glyphicon glyphicon-th-list"></i> Sample Pages<span class="fa arrow"></span></a>
-                        <ul class="nav nav-second-level">
-                            <li>
-                                <a class="active" href="blank.html">Blank Page</a>
-                            </li>
-                            <li>
-                                <a href="login.html">Login Page</a>
-                            </li>
-                        </ul>
-                        <!-- /.nav-second-level -->
                     </li>
                 </ul>
                 <ul class="nav showAll"  hidden="hidden"  >
@@ -402,287 +312,33 @@
                     <li>
                         <a href="#" id="showGroup"><i class="glyphicon glyphicon-th-large"></i> 分组显示</a>
                     </li>
+                    <li th:each="site:${userAllsites}">
+                        <a href="#" class="choosedSite"><label hidden="hidden">[[${site.siteId}]]</label><img class="avatar" src="/img/004.jpg" th:src="@{${site.siteIcon}}" style="width: 30px;height: 30px"><B style="margin-left: 20px" class="siteTitle">[[${site.siteTitle}]]</B></a>
                     <li>
-                        <a href="#"><img class="avatar" src="../img/004.jpg" style="width: 30px;height: 30px"><B style="margin-left: 20px">简书</B></a>
-                    </li>
-                    <li>
-                        <a href="#"><img class="avatar" src="../img/004.jpg" style="width: 30px;height: 30px"><B style="margin-left: 20px">简书</B></a>
-                    </li>
-                    <li>
-                        <a href="#"><img class="avatar" src="../img/004.jpg" style="width: 30px;height: 30px"><B style="margin-left: 20px">简书</B></a>
-                    </li>
-                    <li>
-                        <a href="#"><img class="avatar" src="../img/004.jpg" style="width: 30px;height: 30px"><B style="margin-left: 20px">简书</B></a>
-                    </li>
-                    <li>
-                        <a href="#"><img class="avatar" src="../img/004.jpg" style="width: 30px;height: 30px"><B style="margin-left: 20px">简书</B></a>
-                    </li>
-                    <li>
-                        <a href="#"><img class="avatar" src="../img/004.jpg" style="width: 30px;height: 30px"><B style="margin-left: 20px">简书</B></a>
-                    </li>
-                    <li>
-                        <a href="#"><img class="avatar" src="../img/004.jpg" style="width: 30px;height: 30px"><B style="margin-left: 20px">简书</B></a>
-                    </li>
-                    <li>
-                        <a href="#"><img class="avatar" src="../img/004.jpg" style="width: 30px;height: 30px"><B style="margin-left: 20px">简书</B></a>
-                    </li>
                 </ul>
             </div>
 
             <!-- /.sidebar-collapse -->
         </div>
         <!-- /.navbar-static-side -->
-    </nav>
-
+    </nav >
     <!-- Page Content -->
     <div id="page-wrapper">
         <div class="row " style="margin-top: 42px">
             <div style="display: flex">
-                <div style="width:300px; float:left ;border-right: solid 1px #eeeeee;margin-left: -15px">
+                <div style="width:300px; float:left ;border-right: solid 1px #eeeeee;margin-left: -15px" >
                     <div class="post-list"style="padding-right: -40px">
-                        <div class="post-list-item news-item" style="height: 66px">
+                        <div id="showAllSiteWindow"class="post-list-item news-item" style="height: 66px">
                             <div class="post-heading" style="padding: 20px 20px">
-                                <span style="font-size: x-large ;color:#3630ff" class="glyphicon glyphicon-home"></span><B style="margin-left: 20px;font-size: medium">查看全部</B>
+                                <span style="font-size: x-large ;color:#3630ff" class="glyphicon glyphicon-home "></span><B style="margin-left: 20px;font-size: medium">查看全部</B>
                             </div>
                         </div>
-                        <div class="post-list-item news-item" style="padding: 5px 20px">
-                            <a href="#">
-                                <div class="post-heading">某著名表姓老师，因美貌如花被潜规则，目前其学生情绪稳定</div>
-                            </a>
-                            <!-- <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequuntur aut doloribus optio
-                                eligendi id expedita recusandae...</p> -->
-                            <p class="text-muted">
-                        <span>
-                            <img class="avatar" src="../img/004.jpg">
-                        简书创造属于你的快乐
-
-                        </span> ⋅
-                                <span>
-                        7分钟前
-                        </span>
-                                <span class="glyphicon glyphicon-thumbs-up">
-                        </span>
-                                <span class="glyphicon glyphicon-heart-empty">
-                        </span>
-                            </p>
-                        </div>
-                        <div class="post-list-item news-item" style="padding: 5px 20px">
-                            <a href="#">
-                                <div class="post-heading">某著名表姓老师，因美貌如花被潜规则，目前其学生情绪稳定</div>
-                            </a>
-                            <!-- <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequuntur aut doloribus optio
-                                eligendi id expedita recusandae...</p> -->
-                            <p class="text-muted">
-                        <span>
-                            <img class="avatar" src="../img/004.jpg">
-                        简书创造属于你的快乐
-
-                        </span> ⋅
-                                <span>
-                        7分钟前
-                        </span>
-                                <span class="glyphicon glyphicon-thumbs-up">
-                        </span>
-                                <span class="glyphicon glyphicon-heart-empty">
-                        </span>
-                            </p>
-                        </div>
-                        <div class="post-list-item news-item" style="padding: 5px 20px">
-                            <a href="#">
-                                <div class="post-heading">某著名表姓老师，因美貌如花被潜规则，目前其学生情绪稳定</div>
-                            </a>
-                            <!-- <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequuntur aut doloribus optio
-                                eligendi id expedita recusandae...</p> -->
-                            <p class="text-muted">
-                        <span>
-                            <img class="avatar" src="../img/004.jpg">
-                        简书创造属于你的快乐
-
-                        </span> ⋅
-                                <span>
-                        7分钟前
-                        </span>
-                                <span class="glyphicon glyphicon-thumbs-up">
-                        </span>
-                                <span class="glyphicon glyphicon-heart-empty">
-                        </span>
-                            </p>
-                        </div>
-                        <div class="post-list-item news-item" style="padding: 5px 20px">
-                            <a href="#">
-                                <div class="post-heading">某著名表姓老师，因美貌如花被潜规则，目前其学生情绪稳定</div>
-                            </a>
-                            <!-- <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequuntur aut doloribus optio
-                                eligendi id expedita recusandae...</p> -->
-                            <p class="text-muted">
-                        <span>
-                            <img class="avatar" src="../img/004.jpg">
-                        简书创造属于你的快乐
-
-                        </span> ⋅
-                                <span>
-                        7分钟前
-                        </span>
-                                <span class="glyphicon glyphicon-thumbs-up">
-                        </span>
-                                <span class="glyphicon glyphicon-heart-empty">
-                        </span>
-                            </p>
-                        </div>
-                        <div class="post-list-item news-item" style="padding: 5px 20px">
-                            <a href="#">
-                                <div class="post-heading">某著名表姓老师，因美貌如花被潜规则，目前其学生情绪稳定</div>
-                            </a>
-                            <!-- <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequuntur aut doloribus optio
-                                eligendi id expedita recusandae...</p> -->
-                            <p class="text-muted">
-                        <span>
-                            <img class="avatar" src="../img/004.jpg">
-                        简书创造属于你的快乐
-
-                        </span> ⋅
-                                <span>
-                        7分钟前
-                        </span>
-                                <span class="glyphicon glyphicon-thumbs-up">
-                        </span>
-                                <span class="glyphicon glyphicon-heart-empty">
-                        </span>
-                            </p>
-                        </div>
-                        <div class="post-list-item news-item" style="padding: 5px 20px">
-                            <a href="#">
-                                <div class="post-heading">某著名表姓老师，因美貌如花被潜规则，目前其学生情绪稳定</div>
-                            </a>
-                            <!-- <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequuntur aut doloribus optio
-                                eligendi id expedita recusandae...</p> -->
-                            <p class="text-muted">
-                        <span>
-                            <img class="avatar" src="../img/004.jpg">
-                        简书创造属于你的快乐
-
-                        </span> ⋅
-                                <span>
-                        7分钟前
-                        </span>
-                                <span class="glyphicon glyphicon-thumbs-up">
-                        </span>
-                                <span class="glyphicon glyphicon-heart-empty">
-                        </span>
-                            </p>
-                        </div>
-                        <div class="post-list-item news-item" style="padding: 5px 20px">
-                            <a href="#">
-                                <div class="post-heading">某著名表姓老师，因美貌如花被潜规则，目前其学生情绪稳定</div>
-                            </a>
-                            <!-- <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequuntur aut doloribus optio
-                                eligendi id expedita recusandae...</p> -->
-                            <p class="text-muted">
-                        <span>
-                            <img class="avatar" src="../img/004.jpg">
-                        简书创造属于你的快乐
-
-                        </span> ⋅
-                                <span>
-                        7分钟前
-                        </span>
-                                <span class="glyphicon glyphicon-thumbs-up">
-                        </span>
-                                <span class="glyphicon glyphicon-heart-empty">
-                        </span>
-                            </p>
-                        </div>
-                        <div class="post-list-item news-item" style="padding: 5px 20px">
-                            <a href="#">
-                                <div class="post-heading">某著名表姓老师，因美貌如花被潜规则，目前其学生情绪稳定</div>
-                            </a>
-                            <!-- <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequuntur aut doloribus optio
-                                eligendi id expedita recusandae...</p> -->
-                            <p class="text-muted">
-                        <span>
-                            <img class="avatar" src="../img/004.jpg">
-                        简书创造属于你的快乐
-
-                        </span> ⋅
-                                <span>
-                        7分钟前
-                        </span>
-                                <span class="glyphicon glyphicon-thumbs-up">
-                        </span>
-                                <span class="glyphicon glyphicon-heart-empty">
-                        </span>
-                            </p>
-                        </div>
-                        <div class="post-list-item news-item" style="padding: 5px 20px">
-                            <a href="#">
-                                <div class="post-heading">某著名表姓老师，因美貌如花被潜规则，目前其学生情绪稳定</div>
-                            </a>
-                            <!-- <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequuntur aut doloribus optio
-                                eligendi id expedita recusandae...</p> -->
-                            <p class="text-muted">
-                        <span>
-                            <img class="avatar" src="../img/004.jpg">
-                        简书创造属于你的快乐
-
-                        </span> ⋅
-                                <span>
-                        7分钟前
-                        </span>
-                                <span class="glyphicon glyphicon-thumbs-up">
-                        </span>
-                                <span class="glyphicon glyphicon-heart-empty">
-                        </span>
-                            </p>
-                        </div>
-                        <div class="post-list-item news-item" style="padding: 5px 20px">
-                            <a href="#">
-                                <div class="post-heading">某著名表姓老师，因美貌如花被潜规则，目前其学生情绪稳定</div>
-                            </a>
-                            <!-- <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequuntur aut doloribus optio
-                                eligendi id expedita recusandae...</p> -->
-                            <p class="text-muted">
-                        <span>
-                            <img class="avatar" src="../img/004.jpg">
-                        简书创造属于你的快乐
-
-                        </span> ⋅
-                                <span>
-                        7分钟前
-                        </span>
-                                <span class="glyphicon glyphicon-thumbs-up">
-                        </span>
-                                <span class="glyphicon glyphicon-heart-empty">
-                        </span>
-                            </p>
-                        </div>
-                        <div class="post-list-item news-item" style="padding: 5px 20px">
-                            <a href="#">
-                                <div class="post-heading">某著名表姓老师，因美貌如花被潜规则，目前其学生情绪稳定</div>
-                            </a>
-                            <!-- <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequuntur aut doloribus optio
-                                eligendi id expedita recusandae...</p> -->
-                            <p class="text-muted">
-                        <span>
-                            <img class="avatar" src="../img/004.jpg">
-                        简书创造属于你的快乐
-
-                        </span> ⋅
-                                <span>
-                        7分钟前
-                        </span>
-                                <span class="glyphicon glyphicon-thumbs-up">
-                        </span>
-                                <span class="glyphicon glyphicon-heart-empty">
-                        </span>
-                            </p>
-                        </div>
-
-
+                        <div class="showSiteWindow"></div>
                     </div>
                 </div>
                 <div id="showhome"style="width:60%; float:left ;margin-left: 10px" >
                     <div style="align-content: center ;margin: 50px 300px  50px 280px " >
-                        <a href="blank.html"> <img src="../img/images.png"/></a>
+                        <a href="home.html"> <img src="/img/images.png"/></a>
                     </div>
                     <div class="input-group" style="margin-left: 50px">
                         <input type="text" class="form-control " placeholder="订阅一下" aria-describedby="basic-addon2">
@@ -890,7 +546,7 @@
                 <div style=" width:300px;float:left;margin-left: 50px ;border-left: solid 1px #eeeeee ">
 
                     <div class="side-bar-well clearfix">
-                        <div class="col-sm-5"><img src="../img/rssicon.jpg" /></div>
+                        <div class="col-sm-5"><img src="/img/rssicon.jpg" /></div>
                         <div class="col-sm-7">
                             <p class="side-bar-well-title">
                                 RSS 订阅只属于你的专栏
@@ -998,59 +654,171 @@
 
 </div>
 <!-- jQuery -->
-<script src="../vendor/jquery/jquery.min.js"></script>
-<script type="text/javascript">
-    $(document).ready(function(){
-        $("#subscribe").click(function(){
-            $("#showhome").hide();
-            $("#showsubscribe").show();
-        });
-        $("#backhome").click(function(){
-            $("#showhome").show();
-            $("#showsubscribe").hide();
-        });
-        $("#basic-addon2").click(function(){
-            $("#searchitems").show();
-            $("#recommenditem").hide();
-        });
-        $("#backrecommend").click(function(){
-            $("#searchitems").hide();
-            $("#recommenditem").show();
-        });
-        $("#showAll").click(function(){
-            $(".showAll").show();
-            $(".showGroup").hide();
-        });
-        $("#showGroup").click(function(){
-            $(".showGroup").show();
-            $(".showAll").hide();
-        });
-    });
-</script>
-<script type="text/javascript">
-    $(function () {
-        $(window).scroll(function () {
-            if ($(window).scrollTop() >= 50) {
-                $('#btn_top').fadeIn();
-            }
-            else {
-                $('#btn_top').fadeOut();
-            }
-        });
-    });
-    $('#btn_top').click(function () {
-        $('html,body').animate({ scrollTop: 0 }, 500);
-    });
-
-</script>
-
-<script src="../vendor/bootstrap/js/bootstrap.min.js"></script>
-
+<script src="/vendor/jquery/jquery.min.js"></script>
+<script src="/dist/js/main.js"></script>
+<script src="/vendor/bootstrap/js/bootstrap.min.js"></script>
 <!-- Metis Menu Plugin JavaScript -->
-<script src="../vendor/metisMenu/metisMenu.min.js"></script>
-
+<script src="/vendor/metisMenu/metisMenu.min.js"></script>
 <!-- Custom Theme JavaScript -->
-<script src="../dist/js/sb-admin-2.js"></script>
+<script src="/dist/js/sb-admin-2.js"></script>
+<script  type="text/javascript" th:inline="javascript">
+    function timeFn(d1) {//di作为一个变量传进来
+        //如果时间格式是正确的，那下面这一步转化时间格式就可以不用了
+        var dateBegin = new Date(d1);//将-转化为/，使用new Date
+        var dateEnd = new Date();//获取当前时间
+        var dateDiff = dateEnd.getTime() - dateBegin.getTime();//时间差的毫秒数
+        var dayDiff = Math.floor(dateDiff / (24 * 3600 * 1000));//计算出相差天数
+        var leave1=dateDiff%(24*3600*1000)    //计算天数后剩余的毫秒数
+        var hours=Math.floor(leave1/(3600*1000))//计算出小时数
+        //计算相差分钟数
+        var leave2=leave1%(3600*1000)    //计算小时数后剩余的毫秒数
+        var minutes=Math.floor(leave2/(60*1000))//计算相差分钟数
+        //计算相差秒数
+        var leave3=leave2%(60*1000)      //计算分钟数后剩余的毫秒数
+        var seconds=Math.round(leave3/1000)
+        var datastr=" 发布于： ";
+        if(dayDiff > 0){datastr+=dayDiff+"天 " }
+        if (hours > 0) {datastr+=hours+"小时 "}
+        if (minutes > 0) {datastr+=minutes+" 分钟"}
+        if(dateDiff<60*1000){datastr+="刚刚"}
+        return datastr+" 前"
+    }
+  $(document).ready(function () {
+
+      $(".choosedSite").click(function(event){
+          var siteId=event.currentTarget.children[0].innerHTML
+      $.ajax({
+          url:"/chooseSite",
+          contentType: "application/json;charset=utf-8",
+          data:{"siteId":siteId},
+          type:"GET",
+          success:function (reslut) {
+              var str=' '
+              $.each(reslut, function (index, data) {
+                      // console.log(data.itemUrl)
+                      str += '<div   class="post-list-item news-item" style="padding: 5px 20px" ><a href="' + data.itemUrl +
+                          ' " target="view_window" > <div class="post-heading"  > ' + data.itemTitle +
+                          '</div> </a>  <p class="text-muted"> <span > <img class="avatar"   src="' + data.itemIcon +
+                          ' "> </span> <span>' + timeFn(data.itemDate) +
+                          ' </span> <span class="glyphicon glyphicon-thumbs-up" style="color: #ff9394" itemid="'+ data.itemId +'">' + data.likeNum +
+                          ' </span> <span class="glyphicon  glyphicon-heart" style="color: #ff9394"    itemid="'+ data.itemId +'">' + data.favNum +
+                          ' </span> </p> </div>'
+
+
+              })
+              // console.log(str)
+              $(".showSiteWindow").html(str);
+              $('.glyphicon.glyphicon-thumbs-up').click(function (event) {
+                  var itemId=$(this).attr("itemid")
+                  console.log(itemId);
+                  $.ajax({
+                      url:"/likeSite",
+                      contentType: "application/json;charset=utf-8",
+                      data:{"itemId":itemId},
+                      type:"GET",
+                      success:function () {
+                          var num =parseInt(event.target.innerText)+1
+                          console.log(event.target.innerText)
+                          $(event.target).text(num)
+                      }
+                  })
+              })
+              $('.glyphicon.glyphicon-heart').click(function (event) {
+                  var itemId=$(this).attr("itemid")
+                  var uid=[[${user.accountId}]]
+                  // console.log(itemId);
+                  $.ajax({
+                      url:"/favSite",
+                      contentType: "application/json;charset=utf-8",
+                      data:{"itemId":itemId,"uid":uid},
+                      type:"GET",
+                      success:function (re) {
+                          // console.log(re)
+                          if(re=="check"){
+                              var num =parseInt(event.target.innerText)+1
+                              // console.log(event.target.innerText)
+                              $(event.target).text(num)
+                          }else {
+                              alert("已关注");
+                          }
+
+                      }
+                  })
+              })
+
+          }
+      })
+      })
+    $("#showAllSiteWindow").click(function () {
+        var accountId=[[${user.accountId}]]
+        $.ajax({
+            url:"/chooseAllSite",
+            contentType: "application/json;charset=utf-8",
+            data:{"accountId":accountId},
+            type:"GET",
+            success:function (reslut) {
+                var str=' '
+                $.each(reslut, function (index, data) {
+                    // console.log(data.itemUrl)
+                    str += '<div   class="post-list-item news-item" style="padding: 5px 20px" ><a href="' + data.itemUrl +
+                        ' " target="view_window" > <div class="post-heading"  > ' + data.itemTitle +
+                        '</div> </a>  <p class="text-muted"> <span > <img class="avatar"   src="' + data.itemIcon +
+                        ' "> </span> <span>' + timeFn(data.itemDate) +
+                        ' </span> <span class="glyphicon glyphicon-thumbs-up" style="color: #ff9394" itemid="'+ data.itemId +'">' + data.likeNum +
+                        ' </span> <span class="glyphicon  glyphicon-heart" style="color: #ff9394"    itemid="'+ data.itemId +'">' + data.favNum +
+                        ' </span> </p> </div>'
+
+                })
+                // console.log(str)
+                $(".showSiteWindow").html(str);
+                $('.glyphicon.glyphicon-thumbs-up').click(function (event) {
+                    var itemId=$(this).attr("itemid")
+                    console.log(itemId);
+                    $.ajax({
+                        url:"/likeSite",
+                        contentType: "application/json;charset=utf-8",
+                        data:{"itemId":itemId},
+                        type:"GET",
+                        success:function (re) {
+                            console.log(re)
+                            var num =parseInt(event.target.innerText)+1
+                            console.log(event.target.innerText)
+                            $(event.target).text(num)
+                        }
+                    })
+                })
+                $('.glyphicon.glyphicon-heart').click(function (event) {
+                    var itemId=$(this).attr("itemid")
+                    var uid=[[${user.accountId}]]
+                    // console.log(itemId);
+                    $.ajax({
+                        url:"/favSite",
+                        contentType: "application/json;charset=utf-8",
+                        data:{"itemId":itemId,"uid":uid},
+                        type:"GET",
+                        success:function (re) {
+                            // console.log(re)
+                            if(re=="check"){
+                                var num =parseInt(event.target.innerText)+1
+                                // console.log(event.target.innerText)
+                                $(event.target).text(num)
+                            }else {
+                                alert("已关注");
+                            }
+
+                        }
+                    })
+                })
+            }
+        })
+    })
+  })
+
+</script>
+
+
+
+
 </body>
 
 </html>

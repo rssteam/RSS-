@@ -57,4 +57,5 @@ public class Testcontroller {
         return list;
 //        return iredisservice.getByKey("map"+17,"https://www.cnbeta.com/articles/tech/805373.htm",Item.class);
     }
+
 }

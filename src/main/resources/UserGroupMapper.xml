@@ -70,4 +70,7 @@
       account_id = #{accountId,jdbcType=VARCHAR}
     where group_id = #{groupId,jdbcType=INTEGER}
   </update>
+  <select id="selectByUid" parameterType="java.lang.String" resultType="com.reader.rss.pojo.UserGroup">
+    select *from usergroup where account_id = #{accountId}
+  </select>
 </mapper>
