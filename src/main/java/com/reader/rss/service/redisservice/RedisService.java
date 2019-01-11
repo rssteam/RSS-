@@ -191,13 +191,17 @@ public class RedisService implements Iredisservice {
     public List<Item> getSiteItems(int siteid) {
 //        System.out.println(siteid);
         if(isExists("map"+siteid)) return getMap("map"+siteid,Item.class);
-        List<Item> list = itemMapper.selectBysiteid(siteid);
-        updateItemValue(list,getSite(siteid));
-        return list;
+/*        List<Item> list = itemMapper.selectBysiteid(siteid);
+        updateItemValue(list,getSite(siteid));*/
+        return new ArrayList<>();
     }
 
     @Override
     public Site getSite(int siteid) {
+        if(siteMapper.selectByPrimaryKey(siteid) == null){
+            System.out.println("Site不存在");
+            return null;
+        }
         Site site = null;
         if(!isExists("site"+siteid)){
             site = siteMapper.selectByPrimaryKey(siteid);
