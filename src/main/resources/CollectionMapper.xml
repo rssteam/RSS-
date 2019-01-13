@@ -21,13 +21,13 @@
     delete from collection
     where col_id = #{colId,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.reader.rss.mapper.Collection">
+  <insert id="insert" parameterType="com.reader.rss.pojo.Collection">
     insert into collection (col_id, item_id, account_id
       )
     values (#{colId,jdbcType=INTEGER}, #{itemId,jdbcType=INTEGER}, #{accountId,jdbcType=VARCHAR}
       )
   </insert>
-  <insert id="insertSelective" parameterType="com.reader.rss.mapper.Collection">
+  <insert id="insertSelective" parameterType="com.reader.rss.pojo.Collection">
     insert into collection
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="colId != null">
@@ -52,7 +52,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.reader.rss.mapper.Collection">
+  <update id="updateByPrimaryKeySelective" parameterType="com.reader.rss.pojo.Collection">
     update collection
     <set>
       <if test="itemId != null">
@@ -64,7 +64,7 @@
     </set>
     where col_id = #{colId,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.reader.rss.mapper.Collection">
+  <update id="updateByPrimaryKey" parameterType="com.reader.rss.pojo.Collection">
     update collection
     set item_id = #{itemId,jdbcType=INTEGER},
       account_id = #{accountId,jdbcType=VARCHAR}
