@@ -1,9 +1,6 @@
 package com.reader.rss.mapper;
-
-
-import com.reader.rss.pojo.User;
 import org.apache.ibatis.annotations.Mapper;
-
+import com.reader.rss.pojo.User;
 @Mapper
 public interface UserMapper {
     int deleteByPrimaryKey(String accountId);
@@ -17,4 +14,6 @@ public interface UserMapper {
     int updateByPrimaryKeySelective(User record);
 
     int updateByPrimaryKey(User record);
+
+    User selectNewUser();
 }

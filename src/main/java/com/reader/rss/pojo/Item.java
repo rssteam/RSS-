@@ -15,20 +15,53 @@ public class Item {
 
     private Integer likeNum;
 
-    private Date itemDatae;
+    private Date itemDate;
 
-    public Item(Integer itemId, String itemTitle, String itemUrl, Integer siteId, Integer favNum, Integer likeNum, Date itemDatae) {
+    private String itemIcon;
+
+    private String itemDes;
+
+    private String itemPic;
+
+    @Override
+    public String toString() {
+        return "Item{" +
+                "itemId=" + itemId +
+                ", itemTitle='" + itemTitle + '\'' +
+                ", itemUrl='" + itemUrl + '\'' +
+                ", siteId=" + siteId +
+                ", favNum=" + favNum +
+                ", likeNum=" + likeNum +
+                ", itemDate=" + itemDate +
+                ", itemIcon='" + itemIcon + '\'' +
+                ", itemDes='" + itemDes + '\'' +
+                ", itemPic='" + itemPic + '\'' +
+                '}';
+    }
+
+    public Item(Integer itemId, String itemTitle, String itemUrl, Integer siteId, Integer favNum, Integer likeNum, Date itemDate, String itemIcon, String itemDes, String itemPic) {
         this.itemId = itemId;
         this.itemTitle = itemTitle;
         this.itemUrl = itemUrl;
         this.siteId = siteId;
         this.favNum = favNum;
         this.likeNum = likeNum;
-        this.itemDatae = itemDatae;
+        this.itemDate = itemDate;
+        this.itemIcon = itemIcon;
+        this.itemDes = itemDes;
+        this.itemPic = itemPic;
     }
 
     public Item() {
         super();
+    }
+    public Item(Content content) {
+//       this.itemTitle= content.getTitle();
+//        this.itemUrl=content.getUrl();
+//        content.getDate();
+//        content.getDescr();
+        this(null,content.getTitle(),content.getUrl(),null,0,0,null,content.getIcon(),content.getDescr(),content.getImg());
+
     }
 
     public Integer getItemId() {
@@ -79,11 +112,36 @@ public class Item {
         this.likeNum = likeNum;
     }
 
-    public Date getItemDatae() {
-        return itemDatae;
+    public Date getItemDate() {
+        return itemDate;
     }
 
-    public void setItemDatae(Date itemDatae) {
-        this.itemDatae = itemDatae;
+    public void setItemDate(Date itemDate) {
+        this.itemDate = itemDate;
     }
+
+    public String getItemIcon() {
+        return itemIcon;
+    }
+
+    public void setItemIcon(String itemIcon) {
+        this.itemIcon = itemIcon == null ? null : itemIcon.trim();
+    }
+
+    public String getItemDes() {
+        return itemDes;
+    }
+
+    public void setItemDes(String itemDes) {
+        this.itemDes = itemDes == null ? null : itemDes.trim();
+    }
+
+    public String getItemPic() {
+        return itemPic;
+    }
+
+    public void setItemPic(String itemPic) {
+        this.itemPic = itemPic == null ? null : itemPic.trim();
+    }
+
 }

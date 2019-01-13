@@ -11,12 +11,37 @@ public class Site {
 
     private String siteCondition;
 
+    @Override
+    public String toString() {
+        return "Site{" +
+                "siteId=" + siteId +
+                ", siteTitle='" + siteTitle + '\'' +
+                ", siteIcon='" + siteIcon + '\'' +
+                ", siteUrl='" + siteUrl + '\'' +
+                ", siteCondition='" + siteCondition + '\'' +
+                '}';
+    }
+
     public Site(Integer siteId, String siteTitle, String siteIcon, String siteUrl, String siteCondition) {
         this.siteId = siteId;
         this.siteTitle = siteTitle;
         this.siteIcon = siteIcon;
         this.siteUrl = siteUrl;
         this.siteCondition = siteCondition;
+    }
+
+    public Site(String siteTitle, String siteUrl, String siteCondition) {
+        this.siteTitle = siteTitle;
+        this.siteUrl = siteUrl;
+        this.siteCondition = siteCondition;
+    }
+
+    public Site(Site site) {
+        this.siteId = site.getSiteId();
+        this.siteTitle = site.getSiteTitle();
+        this.siteIcon = site.getSiteIcon();
+        this.siteUrl = site.getSiteUrl();
+        this.siteCondition = site.getSiteCondition();
     }
 
     public Site() {

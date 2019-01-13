@@ -1,0 +1,824 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>RSS关注你的订阅</title>
+    <link rel="icon" href="/img/rssicon.jpg"  type="img/x-ico" />
+    <!-- Bootstrap Core CSS -->
+    <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- MetisMenu CSS -->
+    <link href="/vendor/metisMenu/metisMenu.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="/dist/css/sb-admin-2.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="/dist/css/main.css">
+
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body>
+<button id="btn_top"  >
+    <span class="glyphicon glyphicon-menu-up " style="font-size: x-large"></span>
+</button>
+<div id="wrapper">
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-default navbar-fixed-top " role="navigation" style="margin-bottom: 0" >
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#"  ></a>
+        </div>
+        <!-- /.navbar-header -->
+        <ul class="nav navbar-nav">
+            <li><a href="/">首页</a></li>
+            <li ><a href="#" id="subscribe">订阅源</a></li>
+            <li><a href="#"id="HOME"  >自定义</a></li>
+            <li><a href="#">数读</a></li>
+            <li><a href="#">军事</a></li>
+            <li><a href="#">政务</a></li>
+        </ul>
+        <ul class="nav navbar-top-links navbar-right">
+            <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                    <i class="fa fa-envelope fa-fw"></i> <i class="fa fa-caret-down"></i>
+                </a>
+                <ul class="dropdown-menu dropdown-messages">
+                    <li>
+                        <a href="#">
+                            <div>
+                                <strong>John Smith</strong>
+                                <span class="pull-right text-muted">
+                                        <em>Yesterday</em>
+                                    </span>
+                            </div>
+                            <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque eleifend...</div>
+                        </a>
+                    </li>
+                    <li class="divider"></li>
+                    <li>
+                        <a href="#">
+                            <div>
+                                <strong>John Smith</strong>
+                                <span class="pull-right text-muted">
+                                        <em>Yesterday</em>
+                                    </span>
+                            </div>
+                            <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque eleifend...</div>
+                        </a>
+                    </li>
+                    <li class="divider"></li>
+                    <li>
+                        <a href="#">
+                            <div>
+                                <strong>John Smith</strong>
+                                <span class="pull-right text-muted">
+                                        <em>Yesterday</em>
+                                    </span>
+                            </div>
+                            <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque eleifend...</div>
+                        </a>
+                    </li>
+                    <li class="divider"></li>
+                    <li>
+                        <a class="text-center" href="#">
+                            <strong>Read All Messages</strong>
+                            <i class="fa fa-angle-right"></i>
+                        </a>
+                    </li>
+                </ul>
+                <!-- /.dropdown-messages -->
+            </li>
+            <!-- /.dropdown -->
+            <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                    <i class="fa fa-tasks fa-fw"></i> <i class="fa fa-caret-down"></i>
+                </a>
+                <ul class="dropdown-menu dropdown-tasks">
+                    <li>
+                        <a href="#">
+                            <div>
+                                <p>
+                                    <strong>Task 1</strong>
+                                    <span class="pull-right text-muted">40% Complete</span>
+                                </p>
+                                <div class="progress progress-striped active">
+                                    <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 40%">
+                                        <span class="sr-only">40% Complete (success)</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="divider"></li>
+                    <li>
+                        <a href="#">
+                            <div>
+                                <p>
+                                    <strong>Task 2</strong>
+                                    <span class="pull-right text-muted">20% Complete</span>
+                                </p>
+                                <div class="progress progress-striped active">
+                                    <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: 20%">
+                                        <span class="sr-only">20% Complete</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="divider"></li>
+                    <li>
+                        <a href="#">
+                            <div>
+                                <p>
+                                    <strong>Task 3</strong>
+                                    <span class="pull-right text-muted">60% Complete</span>
+                                </p>
+                                <div class="progress progress-striped active">
+                                    <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%">
+                                        <span class="sr-only">60% Complete (warning)</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="divider"></li>
+                    <li>
+                        <a href="#">
+                            <div>
+                                <p>
+                                    <strong>Task 4</strong>
+                                    <span class="pull-right text-muted">80% Complete</span>
+                                </p>
+                                <div class="progress progress-striped active">
+                                    <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width: 80%">
+                                        <span class="sr-only">80% Complete (danger)</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="divider"></li>
+                    <li>
+                        <a class="text-center" href="#">
+                            <strong>See All Tasks</strong>
+                            <i class="fa fa-angle-right"></i>
+                        </a>
+                    </li>
+                </ul>
+                <!-- /.dropdown-tasks -->
+            </li>
+            <!-- /.dropdown -->
+            <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                    <i class="fa fa-bell fa-fw"></i> <i class="fa fa-caret-down"></i>
+                </a>
+                <ul class="dropdown-menu dropdown-alerts">
+                    <li>
+                        <a href="#">
+                            <div>
+                                <i class="fa fa-comment fa-fw"></i> New Comment
+                                <span class="pull-right text-muted small">4 minutes ago</span>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="divider"></li>
+                    <li>
+                        <a href="#">
+                            <div>
+                                <i class="fa fa-twitter fa-fw"></i> 3 New Followers
+                                <span class="pull-right text-muted small">12 minutes ago</span>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="divider"></li>
+                    <li>
+                        <a href="#">
+                            <div>
+                                <i class="fa fa-envelope fa-fw"></i> Message Sent
+                                <span class="pull-right text-muted small">4 minutes ago</span>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="divider"></li>
+                    <li>
+                        <a href="#">
+                            <div>
+                                <i class="fa fa-tasks fa-fw"></i> New Task
+                                <span class="pull-right text-muted small">4 minutes ago</span>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="divider"></li>
+                    <li>
+                        <a href="#">
+                            <div>
+                                <i class="fa fa-upload fa-fw"></i> Server Rebooted
+                                <span class="pull-right text-muted small">4 minutes ago</span>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="divider"></li>
+                    <li>
+                        <a class="text-center" href="#">
+                            <strong>See All Alerts</strong>
+                            <i class="fa fa-angle-right"></i>
+                        </a>
+                    </li>
+                </ul>
+                <!-- /.dropdown-alerts -->
+            </li>
+            <!-- /.dropdown -->
+            <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                    <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
+                </a>
+                <ul class="dropdown-menu dropdown-user">
+                    <li><a href="#"><i class="fa fa-user fa-fw"></i> User Profile</a>
+                    </li>
+                    <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
+                    </li>
+                    <li class="divider"></li>
+                    <li><a href="login.html"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                    </li>
+                </ul>
+                <!-- /.dropdown-user -->
+            </li>
+            <!-- /.dropdown -->
+        </ul>
+        <!-- /.navbar-top-links -->
+
+        <div class="navbar-default sidebar " role="navigation">
+            <div class="sidebar-nav navbar-collapse">
+                <ul class="nav showGroup" id="side-menu"  >
+                    <li class="sidebar-search" >
+                        <div class="input-group custom-search-form">
+                            <input type="text" class="form-control" placeholder="Search...">
+                            <span class="input-group-btn">
+                                    <button class="btn btn-default" type="button">
+                                        <i class="fa fa-search"></i>
+                                    </button>
+                                </span>
+                        </div>
+                        <!-- /input-group -->
+                    </li>
+                    <li>
+                        <a href="#" id="showAll"><i class="glyphicon glyphicon-th-large"></i> 全部显示</a>
+                    </li>
+                    <li th:each="userGroup:${userGroups}">
+                        <a href="#"><i class="glyphicon glyphicon-th-list" ></i> [[${userGroup.groupTitle}]]<span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level">
+                            <li  th:each="site:${userGroupSites.get(userGroup.groupId+'')}">
+                                <a href="#" class="choosedSite"  ><label hidden="hidden">[[${site.siteId}]]</label><img class="avatar" src="/img/004.jpg" th:src="@{${site.siteIcon}}" style="width: 30px;height: 30px"><B style="margin-left: 10px">[[${site.siteTitle}]]</B></a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+                <ul class="nav showAll"  hidden="hidden"  >
+                    <li class="sidebar-search">
+                        <div class="input-group custom-search-form">
+                            <input type="text" class="form-control" placeholder="Search...">
+                            <span class="input-group-btn">
+                                    <button class="btn btn-default" type="button">
+                                        <i class="fa fa-search"></i>
+                                    </button>
+                                </span>
+                        </div>
+                        <!-- /input-group -->
+                    </li>
+                    <li>
+                        <a href="#" id="showGroup"><i class="glyphicon glyphicon-th-large"></i> 分组显示</a>
+                    </li>
+                    <li th:each="site:${userAllsites}">
+                        <a href="#" class="choosedSite"><label hidden="hidden">[[${site.siteId}]]</label><img class="avatar" src="/img/004.jpg" th:src="@{${site.siteIcon}}" style="width: 30px;height: 30px"><B style="margin-left: 20px" class="siteTitle">[[${site.siteTitle}]]</B></a>
+                    <li>
+                </ul>
+            </div>
+
+            <!-- /.sidebar-collapse -->
+        </div>
+        <!-- /.navbar-static-side -->
+    </nav >
+    <!-- Page Content -->
+    <div id="page-wrapper">
+        <div class="row " style="margin-top: 42px">
+            <div style="display: flex">
+                <div style="width:300px; float:left ;border-right: solid 1px #eeeeee;margin-left: -15px" >
+                    <div class="post-list"style="padding-right: -40px">
+                        <div id="showAllSiteWindow"class="post-list-item news-item" style="height: 66px">
+                            <div class="post-heading" style="padding: 20px 20px">
+                                <span style="font-size: x-large ;color:#3630ff" class="glyphicon glyphicon-home "></span><B style="margin-left: 20px;font-size: medium">查看全部</B>
+                            </div>
+                        </div>
+                        <div class="showSiteWindow"></div>
+                    </div>
+                </div>
+                <div id="showhome"style="width:60%; float:left ;margin-left: 10px" >
+                    <div style="align-content: center ;margin: 50px 300px  50px 280px " >
+                        <a href="home.html"> <img src="/img/images.png"/></a>
+                    </div>
+                    <div class="input-group" style="margin-left: 50px">
+                        <input type="text" class="form-control " placeholder="订阅一下" aria-describedby="basic-addon2">
+                        <span class="input-group-addon btn btn-info" id="basic-addon2">RSS搜索</span>
+                    </div>
+                    <div style="margin-top: 50px ;padding-left: 50px">
+                        <div id="recommenditem" class="side-bar-well" >
+                            <strong class="side-bar-well-title">
+                                相关推荐
+                            </strong>
+                            <a href="#" class="news-item clearfix">
+                                <div class="row" >
+                              <span class="col-xs-3">
+                                <img src="https://dummyimage.com/150x150/ddd/999" style="width:150px;height: 150px"  alt="">
+                              </span>
+                                    <span class="col-xs-9">
+                                <div class="news-title">Lorem adipisicing elit. Consequuntur aut </div>
+                                <div class="news-info">
+                                    8.9万次播放  ⋅ 3367评论
+                                </div>
+                              </span>
+                                </div>
+                            </a>
+                            <a href="#" class="news-item">
+                                <div class="news-title">Consectetur adipisicing elit. Consequuntur aut </div>
+                                <div class="news-info">
+                                    5.9万次播放  ⋅ 167评论
+                                </div>
+                            </a>
+                            <a href="#" class="news-item clearfix">
+                                <div class="row">
+                              <span class="col-xs-3">
+                                <img src="https://dummyimage.com/150x150/ddd/999" style="width:150px;height: 150px"  alt="">
+                              </span>
+                                    <span class="col-xs-9">
+                                <div class="news-title">Lorem adipisicing elit. Consequuntur aut </div>
+                                <div class="news-info">
+                                    8.9万次播放  ⋅ 3367评论
+                                </div>
+                              </span>
+                                </div>
+                            </a>
+                            <a href="#" class="news-item">
+                                <div class="news-title">Consectetur adipisicing elit. Consequuntur aut </div>
+                                <div class="news-info">
+                                    5.9万次播放  ⋅ 167评论
+                                </div>
+                            </a>
+                            <a href="#" class="news-item">
+                                <div class="news-title">Consectetur adipisicing elit. Consequuntur aut </div>
+                                <div class="news-info">
+                                    5.9万次播放  ⋅ 167评论
+                                </div>
+                            </a>
+                        </div>
+                        <div id="searchitems"class="side-bar-well"  hidden="hidden" >
+                            <strong class="side-bar-well-title">
+                                <a href="#" class="news-item" id="backrecommend">GO BACK!</a>
+                            </strong>
+                            <a href="#" class="news-item">
+                                <div class="news-title">Consectetur adipisicing elit. Consequuntur aut </div>
+                                <div class="news-info">
+                                    5.9万次播放  ⋅ 167评论
+                                </div>
+                            </a>
+                            <a href="#" class="news-item">
+                                <div class="news-title">Consectetur adipisicing elit. Consequuntur aut </div>
+                                <div class="news-info">
+                                    5.9万次播放  ⋅ 167评论
+                                </div>
+                            </a>
+                            <a href="#" class="news-item">
+                                <div class="news-title">Consectetur adipisicing elit. Consequuntur aut </div>
+                                <div class="news-info">
+                                    5.9万次播放  ⋅ 167评论
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+
+                </div>
+                <div id="showsubscribe" style="width:60%; float:left ;margin-left: 20px;padding: 20px  " hidden="hidden">
+                    <!-- Jumbotron Header -->
+                    <header class="jumbotron my-4" style="background-color: white">
+                        <h1 class="display-3">A Warm Welcome!</h1>
+                        <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsa, ipsam, eligendi, in quo sunt possimus non incidunt odit vero aliquid similique quaerat nam nobis illo aspernatur vitae fugiat numquam repellat.</p>
+                        <a href="#" id="backhome"class="btn btn-info btn-lg">GO BACK!</a>
+                    </header>
+
+                    <!-- Page Features -->
+                    <div class="row text-center" style="padding-bottom: 40px">
+                        <div class="col-md-2">
+                            <div class="card" style="padding: 10px ;border: 0px">
+                                <img class="card-img-top img-circle " width="50" src="http://placehold.it/50x50" alt="">
+                                <div  style="padding: 5px">
+                                    <a href="#" class="card-link">简书创造属于你的快乐</a>
+                                </div>
+                                <a href="#" class="btn btn-info">订阅</a>
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="card" style="padding: 10px ;border: 0px">
+                                <img class="card-img-top img-circle " width="50" src="http://placehold.it/50x50" alt="">
+                                <div  style="padding: 5px">
+                                    <a href="#" class="card-link">简书创造属于你的快乐</a>
+                                </div>
+                                <a href="#" class="btn btn-info">订阅</a>
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="card" style="padding: 10px ;border: 0px">
+                                <img class="card-img-top img-circle " width="50" src="http://placehold.it/50x50" alt="">
+                                <div  style="padding: 5px">
+                                    <a href="#" class="card-link">简书创造属于你的快乐</a>
+                                </div>
+                                <a href="#" class="btn btn-info">订阅</a>
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="card" style="padding: 10px ;border: 0px">
+                                <img class="card-img-top img-circle " width="50" src="http://placehold.it/50x50" alt="">
+                                <div  style="padding: 5px">
+                                    <a href="#" class="card-link">简书创造属于你的快乐</a>
+                                </div>
+                                <a href="#" class="btn btn-info">订阅</a>
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="card" style="padding: 10px ;border: 0px">
+                                <img class="card-img-top img-circle " width="50" src="http://placehold.it/50x50" alt="">
+                                <div  style="padding: 5px">
+                                    <a href="#" class="card-link">简书创造属于你的快乐</a>
+                                </div>
+                                <a href="#" class="btn btn-info">订阅</a>
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="card" style="padding: 10px ;border: 0px">
+                                <img class="card-img-top img-circle " width="50" src="http://placehold.it/50x50" alt="">
+                                <div  style="padding: 5px">
+                                    <a href="#" class="card-link">简书创造属于你的快乐</a>
+                                </div>
+                                <a href="#" class="btn btn-info">订阅</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row text-center" style="padding-bottom: 40px">
+                        <div class="col-md-2">
+                            <div class="card" style="padding: 10px ;border: 0px">
+                                <img class="card-img-top img-circle " width="50" src="http://placehold.it/50x50" alt="">
+                                <div  style="padding: 5px">
+                                    <a href="#" class="card-link">简书创造属于你的快乐</a>
+                                </div>
+                                <a href="#" class="btn btn-info">订阅</a>
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="card" style="padding: 10px ;border: 0px">
+                                <img class="card-img-top img-circle " width="50" src="http://placehold.it/50x50" alt="">
+                                <div  style="padding: 5px">
+                                    <a href="#" class="card-link">简书创造属于你的快乐</a>
+                                </div>
+                                <a href="#" class="btn btn-info">订阅</a>
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="card" style="padding: 10px ;border: 0px">
+                                <img class="card-img-top img-circle " width="50" src="http://placehold.it/50x50" alt="">
+                                <div  style="padding: 5px">
+                                    <a href="#" class="card-link">简书创造属于你的快乐</a>
+                                </div>
+                                <a href="#" class="btn btn-info">订阅</a>
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="card" style="padding: 10px ;border: 0px">
+                                <img class="card-img-top img-circle " width="50" src="http://placehold.it/50x50" alt="">
+                                <div  style="padding: 5px">
+                                    <a href="#" class="card-link">简书创造属于你的快乐</a>
+                                </div>
+                                <a href="#" class="btn btn-info">订阅</a>
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="card" style="padding: 10px ;border: 0px">
+                                <img class="card-img-top img-circle " width="50" src="http://placehold.it/50x50" alt="">
+                                <div  style="padding: 5px">
+                                    <a href="#" class="card-link">简书创造属于你的快乐</a>
+                                </div>
+                                <a href="#" class="btn btn-info">订阅</a>
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="card" style="padding: 10px ;border: 0px">
+                                <img class="card-img-top img-circle " width="50" src="http://placehold.it/50x50" alt="">
+                                <div  style="padding: 5px">
+                                    <a href="#" class="card-link">简书创造属于你的快乐</a>
+                                </div>
+                                <a href="#" class="btn btn-info">订阅</a>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div style=" width:300px;float:left;margin-left: 50px ;border-left: solid 1px #eeeeee ">
+
+                    <div class="side-bar-well clearfix">
+                        <div class="col-sm-5"><img src="/img/rssicon.jpg" /></div>
+                        <div class="col-sm-7">
+                            <p class="side-bar-well-title">
+                                RSS 订阅只属于你的专栏
+                            </p>
+
+                        </div>
+                    </div>
+                    <div class="side-bar-well">
+                        <strong class="side-bar-well-title">
+                            24小时热闻
+                        </strong>
+                        <a href="#" class="news-item">
+                            <div class="news-title">Consectetur adipisicing elit. Consequuntur aut </div>
+                            <div class="news-info">
+                                5.9万次播放  ⋅ 167评论
+                            </div>
+                        </a>
+                        <a href="#" class="news-item">
+                            <div class="news-title">Lorem adipisicing elit. Consequuntur aut </div>
+                            <div class="news-info">
+                                8.9万次播放  ⋅ 3367评论
+                            </div>
+                        </a>
+                        <a href="#" class="news-item">
+                            <div class="news-title">Consectetur adipisicing elit. Consequuntur aut </div>
+                            <div class="news-info">
+                                5.9万次播放  ⋅ 167评论
+                            </div>
+                        </a>
+                        <a href="#" class="news-item">
+                            <div class="news-title">Lorem adipisicing elit. Consequuntur aut </div>
+                            <div class="news-info">
+                                8.9万次播放  ⋅ 3367评论
+                            </div>
+                        </a>
+                        <a href="#" class="news-item">
+                            <div class="news-title">Consectetur adipisicing elit. Consequuntur aut </div>
+                            <div class="news-info">
+                                5.9万次播放  ⋅ 167评论
+                            </div>
+                        </a>
+                        <a href="#" class="news-item">
+                            <div class="news-title">Lorem adipisicing elit. Consequuntur aut </div>
+                            <div class="news-info">
+                                8.9万次播放  ⋅ 3367评论
+                            </div>
+                        </a>
+                        <a href="#" class="news-item">
+                            <div class="news-title">Consectetur adipisicing elit. Consequuntur aut </div>
+                            <div class="news-info">
+                                5.9万次播放  ⋅ 167评论
+                            </div>
+                        </a>
+                        <a href="#" class="news-item">
+                            <div class="news-title">Lorem adipisicing elit. Consequuntur aut </div>
+                            <div class="news-info">
+                                8.9万次播放  ⋅ 3367评论
+                            </div>
+                        </a>
+                        <a href="#" class="news-item">
+                            <div class="news-title">Consectetur adipisicing elit. Consequuntur aut </div>
+                            <div class="news-info">
+                                5.9万次播放  ⋅ 167评论
+                            </div>
+                        </a>
+                        <a href="#" class="news-item">
+                            <div class="news-title">Lorem adipisicing elit. Consequuntur aut </div>
+                            <div class="news-info">
+                                8.9万次播放  ⋅ 3367评论
+                            </div>
+                        </a>
+                        <a href="#" class="news-item">
+                            <div class="news-title">Consectetur adipisicing elit. Consequuntur aut </div>
+                            <div class="news-info">
+                                5.9万次播放  ⋅ 167评论
+                            </div>
+                        </a>
+                        <a href="#" class="news-item">
+                            <div class="news-title">Lorem adipisicing elit. Consequuntur aut </div>
+                            <div class="news-info">
+                                8.9万次播放  ⋅ 3367评论
+                            </div>
+                        </a>
+                        <a href="#" class="news-item">
+                            <div class="news-title">Consectetur adipisicing elit. Consequuntur aut </div>
+                            <div class="news-info">
+                                5.9万次播放  ⋅ 167评论
+                            </div>
+                        </a>
+                        <a href="#" class="news-item">
+                            <div class="news-title">Lorem adipisicing elit. Consequuntur aut </div>
+                            <div class="news-info">
+                                8.9万次播放  ⋅ 3367评论
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /.container-fluid -->
+        <!-- /#page-wrapper -->
+
+    </div>
+    <!-- /#wrapper -->
+
+</div>
+<!-- jQuery -->
+<script src="/vendor/jquery/jquery.min.js"></script>
+<script src="/dist/js/main.js"></script>
+<script src="/vendor/bootstrap/js/bootstrap.min.js"></script>
+<!-- Metis Menu Plugin JavaScript -->
+<script src="/vendor/metisMenu/metisMenu.min.js"></script>
+<!-- Custom Theme JavaScript -->
+<script src="/dist/js/sb-admin-2.js"></script>
+<script  type="text/javascript" th:inline="javascript">
+    function timeFn(d1) {//di作为一个变量传进来
+        //如果时间格式是正确的，那下面这一步转化时间格式就可以不用了
+        var dateBegin = new Date(d1);//将-转化为/，使用new Date
+        var dateEnd = new Date();//获取当前时间
+        var dateDiff = dateEnd.getTime() - dateBegin.getTime();//时间差的毫秒数
+        var dayDiff = Math.floor(dateDiff / (24 * 3600 * 1000));//计算出相差天数
+        var leave1=dateDiff%(24*3600*1000)    //计算天数后剩余的毫秒数
+        var hours=Math.floor(leave1/(3600*1000))//计算出小时数
+        //计算相差分钟数
+        var leave2=leave1%(3600*1000)    //计算小时数后剩余的毫秒数
+        var minutes=Math.floor(leave2/(60*1000))//计算相差分钟数
+        //计算相差秒数
+        var leave3=leave2%(60*1000)      //计算分钟数后剩余的毫秒数
+        var seconds=Math.round(leave3/1000)
+        var datastr=" 发布于： ";
+        if(dayDiff > 0){datastr+=dayDiff+"天 " }
+        if (hours > 0) {datastr+=hours+"小时 "}
+        if (minutes > 0) {datastr+=minutes+" 分钟"}
+        if(dateDiff<60*1000){datastr+="刚刚"}
+        return datastr+" 前"
+    }
+  $(document).ready(function () {
+
+      $(".choosedSite").click(function(event){
+          var siteId=event.currentTarget.children[0].innerHTML
+      $.ajax({
+          url:"/chooseSite",
+          contentType: "application/json;charset=utf-8",
+          data:{"siteId":siteId},
+          type:"GET",
+          success:function (reslut) {
+              var str=' '
+              $.each(reslut, function (index, data) {
+                      // console.log(data.itemUrl)
+                      str += '<div   class="post-list-item news-item" style="padding: 5px 20px" ><a href="' + data.itemUrl +
+                          ' " target="view_window" > <div class="post-heading"  > ' + data.itemTitle +
+                          '</div> </a>  <p class="text-muted"> <span > <img class="avatar"   src="' + data.itemIcon +
+                          ' "> </span> <span>' + timeFn(data.itemDate) +
+                          ' </span> <span class="glyphicon glyphicon-thumbs-up" style="color: #ff9394" itemid="'+ data.itemId +'">' + data.likeNum +
+                          ' </span> <span class="glyphicon  glyphicon-heart" style="color: #ff9394"    itemid="'+ data.itemId +'">' + data.favNum +
+                          ' </span> </p> </div>'
+
+
+              })
+              // console.log(str)
+              $(".showSiteWindow").html(str);
+              $('.glyphicon.glyphicon-thumbs-up').click(function (event) {
+                  var itemId=$(this).attr("itemid")
+                  console.log(itemId);
+                  $.ajax({
+                      url:"/likeSite",
+                      contentType: "application/json;charset=utf-8",
+                      data:{"itemId":itemId},
+                      type:"GET",
+                      success:function () {
+                          var num =parseInt(event.target.innerText)+1
+                          console.log(event.target.innerText)
+                          $(event.target).text(num)
+                      }
+                  })
+              })
+              $('.glyphicon.glyphicon-heart').click(function (event) {
+                  var itemId=$(this).attr("itemid")
+                  var uid=[[${user.accountId}]]
+                  // console.log(itemId);
+                  $.ajax({
+                      url:"/favSite",
+                      contentType: "application/json;charset=utf-8",
+                      data:{"itemId":itemId,"uid":uid},
+                      type:"GET",
+                      success:function (re) {
+                          // console.log(re)
+                          if(re=="check"){
+                              var num =parseInt(event.target.innerText)+1
+                              // console.log(event.target.innerText)
+                              $(event.target).text(num)
+                          }else {
+                              alert("已关注");
+                          }
+
+                      }
+                  })
+              })
+
+          }
+      })
+      })
+    $("#showAllSiteWindow").click(function () {
+        var accountId=[[${user.accountId}]]
+        $.ajax({
+            url:"/chooseAllSite",
+            contentType: "application/json;charset=utf-8",
+            data:{"accountId":accountId},
+            type:"GET",
+            success:function (reslut) {
+                var str=' '
+                $.each(reslut, function (index, data) {
+                    // console.log(data.itemUrl)
+                    str += '<div   class="post-list-item news-item" style="padding: 5px 20px" ><a href="' + data.itemUrl +
+                        ' " target="view_window" > <div class="post-heading"  > ' + data.itemTitle +
+                        '</div> </a>  <p class="text-muted"> <span > <img class="avatar"   src="' + data.itemIcon +
+                        ' "> </span> <span>' + timeFn(data.itemDate) +
+                        ' </span> <span class="glyphicon glyphicon-thumbs-up" style="color: #ff9394" itemid="'+ data.itemId +'">' + data.likeNum +
+                        ' </span> <span class="glyphicon  glyphicon-heart" style="color: #ff9394"    itemid="'+ data.itemId +'">' + data.favNum +
+                        ' </span> </p> </div>'
+
+                })
+                // console.log(str)
+                $(".showSiteWindow").html(str);
+                $('.glyphicon.glyphicon-thumbs-up').click(function (event) {
+                    var itemId=$(this).attr("itemid")
+                    console.log(itemId);
+                    $.ajax({
+                        url:"/likeSite",
+                        contentType: "application/json;charset=utf-8",
+                        data:{"itemId":itemId},
+                        type:"GET",
+                        success:function (re) {
+                            console.log(re)
+                            var num =parseInt(event.target.innerText)+1
+                            console.log(event.target.innerText)
+                            $(event.target).text(num)
+                        }
+                    })
+                })
+                $('.glyphicon.glyphicon-heart').click(function (event) {
+                    var itemId=$(this).attr("itemid")
+                    var uid=[[${user.accountId}]]
+                    // console.log(itemId);
+                    $.ajax({
+                        url:"/favSite",
+                        contentType: "application/json;charset=utf-8",
+                        data:{"itemId":itemId,"uid":uid},
+                        type:"GET",
+                        success:function (re) {
+                            // console.log(re)
+                            if(re=="check"){
+                                var num =parseInt(event.target.innerText)+1
+                                // console.log(event.target.innerText)
+                                $(event.target).text(num)
+                            }else {
+                                alert("已关注");
+                            }
+
+                        }
+                    })
+                })
+            }
+        })
+    })
+  })
+
+</script>
+
+
+
+
+</body>
+
+</html>

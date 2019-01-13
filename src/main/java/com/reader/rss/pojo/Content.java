@@ -4,8 +4,21 @@ public class Content {
     private String title;
     private String url;
     private String descr;
-    private String author;
+    private String img;
     private String date;
+    private  String icon;
+
+    public Content() {
+    }
+
+    public Content(String title, String url, String descr, String img, String date, String icon) {
+        this.title = title;
+        this.url = url;
+        this.descr = descr;
+        this.img = img;
+        this.date = date;
+        this.icon = icon;
+    }
 
     @Override
     public String toString() {
@@ -13,17 +26,10 @@ public class Content {
                 "title='" + title + '\'' +
                 ", url='" + url + '\'' +
                 ", descr='" + descr + '\'' +
-                ", author='" + author + '\'' +
+                ", img='" + img + '\'' +
                 ", date='" + date + '\'' +
+                ", icon='" + icon + '\'' +
                 '}';
-    }
-
-    public Content(String title, String url, String descr,  String date, String author) {
-        this.title = title;
-        this.url = url;
-        this.descr = descr;
-        this.author = author;
-        this.date = date;
     }
 
     public String getTitle() {
@@ -50,12 +56,12 @@ public class Content {
         this.descr = descr;
     }
 
-    public String getAuthor() {
-        return author;
+    public String getImg() {
+        return img;
     }
 
-    public void setAuthor(String author) {
-        this.author = author;
+    public void setImg(String img) {
+        this.img = img;
     }
 
     public String getDate() {
@@ -64,5 +70,13 @@ public class Content {
 
     public void setDate(String date) {
         this.date = date;
+    }
+
+    public String getIcon() {
+        return icon;
+    }
+
+    public void setIcon(String icon) {
+        this.icon = icon;
     }
 }
