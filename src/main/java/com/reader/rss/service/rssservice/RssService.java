@@ -8,4 +8,5 @@ import java.util.List;
 public interface RssService {
     public User findByID(String userID);
     public List<Collection> checkCollection(Integer itemId,String accountId);
+    public List<User> login(String accountId,String password);
 }

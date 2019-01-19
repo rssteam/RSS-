@@ -6,6 +6,7 @@ import com.reader.rss.pojo.Collection;
 import com.reader.rss.pojo.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import sun.nio.cs.US_ASCII;
 
 import java.util.List;
 
@@ -15,6 +16,7 @@ public class RssServiceImpl implements  RssService {
     UserMapper userMapper;
     @Autowired(required = false)
     CollectionMapper collectionMapper;
+
     @Override
     public User findByID(String userID) {
         User user=userMapper.selectByPrimaryKey(userID);
@@ -25,5 +27,11 @@ public class RssServiceImpl implements  RssService {
     public List<Collection> checkCollection(Integer itemId, String accountId) {
         List<Collection> collections=collectionMapper.checkCollection(itemId,accountId);
         return collections;
+    }
+
+    @Override
+    public List<User> login(String accountId, String password) {
+        List<User> users=userMapper.login(accountId,password);
+        return  users;
     }
 }

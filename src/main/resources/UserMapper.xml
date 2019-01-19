@@ -95,4 +95,7 @@
   <select id="selectNewUser" resultType="com.reader.rss.pojo.User">
   select *from user where account_id=(select max(account_id) from user)
 </select>
+  <select id="login" resultType="com.reader.rss.pojo.User">
+  select *from user where account_id=#{accountId} and pwd=#{password}
+</select>
 </mapper>
