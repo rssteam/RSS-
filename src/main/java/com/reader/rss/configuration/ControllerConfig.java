@@ -1,13 +1,12 @@
 package com.reader.rss.configuration;
 
-import com.reader.rss.controller.LoginInterceptor;
+
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.Ordered;
-import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
+
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupport;
 
-import java.util.Arrays;
 
 @Configuration
 public class ControllerConfig  extends WebMvcConfigurationSupport{
@@ -17,10 +16,12 @@ public class ControllerConfig  extends WebMvcConfigurationSupport{
             registry.setOrder( Ordered.HIGHEST_PRECEDENCE );
             super.addViewControllers( registry );
     }
-        @Override
-        protected void addInterceptors(InterceptorRegistry registry) {
-            registry.addInterceptor(new LoginInterceptor()).addPathPatterns("/**").excludePathPatterns(Arrays.asList("/dist/**","/","/index","/login"));
-        }
+
+
+//    @Override
+//        protected void addInterceptors(InterceptorRegistry registry) {
+//            registry.addInterceptor(new LoginInterceptor()).addPathPatterns("/**").excludePathPatterns(Arrays.asList("/dist/**","/img/**","/vendor/**","/","/index","/login"));
+//        }
     }
 
 
