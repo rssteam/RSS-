@@ -158,4 +158,7 @@
   <select id="selectBysiteid" resultType="com.reader.rss.pojo.Item">
     select * from item where site_id = #{siteid}
   </select>
+  <select id="selectAllItem" resultType="com.reader.rss.pojo.Item">
+    select * from item
+  </select>
 </mapper>

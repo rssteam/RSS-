@@ -10,9 +10,9 @@
     <meta name="author" content="">
 
     <title>RSS关注你的订阅</title>
-    <link rel="icon" href="/img/rssicon.jpg"  type="img/x-ico" />
+    <link rel="shortcut icon" type="image/x-icon" href="/img/favicon.ico" />
     <!-- Bootstrap Core CSS -->
-    <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/vendor/bootstrap/css/bootstrap.css" rel="stylesheet">
 
     <!-- MetisMenu CSS -->
     <link href="/vendor/metisMenu/metisMenu.min.css" rel="stylesheet">
@@ -54,14 +54,9 @@
         </div>
         <!-- /.navbar-header -->
         <ul class="nav navbar-nav">
-            <li><a href="/">首页</a></li>
+            <li><a href="/home">首页</a></li>
             <li ><a href="#" id="subscribe">订阅源</a></li>
             <li><a href="#"id="HOME"  >自定义</a></li>
-            <li><a href="#">数读</a></li>
-            <li><a href="#">军事</a></li>
-            <li><a href="#">政务</a></li>
-            <li><a href="#">政务</a></li>
-            <li><a href="#">[[${user.accountId}]]</a></li>
         </ul>
         <ul class="nav navbar-top-links navbar-right">
             <li class="dropdown">
@@ -264,7 +259,7 @@
                     <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
                     </li>
                     <li class="divider"></li>
-                    <li><a href="login.html"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                    <li><a href="/logout"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
                     </li>
                 </ul>
                 <!-- /.dropdown-user -->
@@ -294,7 +289,7 @@
                         <a href="#"><i class="glyphicon glyphicon-th-list" ></i> [[${userGroup.groupTitle}]]<span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
                             <li  th:each="site:${userGroupSites.get(userGroup.groupId+'')}">
-                                <a href="#" class="choosedSite"  ><label hidden="hidden">[[${site.siteId}]]</label><img class="avatar" src="/img/004.jpg" th:src="@{${site.siteIcon}}" style="width: 30px;height: 30px"><B style="margin-left: 10px">[[${site.siteTitle}]]</B></a>
+                                <a href="#" class="choosedSite"  ><label hidden="hidden">[[${site.siteId}]]</label><img class="avatar" src="" th:src="@{${site.siteIcon}}" style="width: 30px;height: 30px"><B style="margin-left: 10px">[[${site.siteTitle}]]</B></a>
                             </li>
                         </ul>
                     </li>
@@ -315,7 +310,7 @@
                         <a href="#" id="showGroup"><i class="glyphicon glyphicon-th-large"></i> 分组显示</a>
                     </li>
                     <li th:each="site:${userAllsites}">
-                        <a href="#" class="choosedSite"><label hidden="hidden">[[${site.siteId}]]</label><img class="avatar" src="/img/004.jpg" th:src="@{${site.siteIcon}}" style="width: 30px;height: 30px"><B style="margin-left: 20px" class="siteTitle">[[${site.siteTitle}]]</B></a>
+                        <a href="#" class="choosedSite"><label hidden="hidden">[[${site.siteId}]]</label><img class="avatar" src="/img/rssicon.jpg" th:src="@{${site.siteIcon}}" style="width: 30px;height: 30px"><B style="margin-left: 20px" class="siteTitle">[[${site.siteTitle}]]</B></a>
                     <li>
                 </ul>
             </div>
@@ -558,90 +553,12 @@
                     </div>
                     <div class="side-bar-well">
                         <strong class="side-bar-well-title">
-                            24小时热闻
+                            热门推荐
                         </strong>
-                        <a href="#" class="news-item">
-                            <div class="news-title">Consectetur adipisicing elit. Consequuntur aut </div>
+                        <a href="#" class="news-item" th:each="hotItem:${allHotItems}">
+                            <div class="news-title" th:text="${hotItem.itemTitle}"> </div>
                             <div class="news-info">
-                                5.9万次播放  ⋅ 167评论
-                            </div>
-                        </a>
-                        <a href="#" class="news-item">
-                            <div class="news-title">Lorem adipisicing elit. Consequuntur aut </div>
-                            <div class="news-info">
-                                8.9万次播放  ⋅ 3367评论
-                            </div>
-                        </a>
-                        <a href="#" class="news-item">
-                            <div class="news-title">Consectetur adipisicing elit. Consequuntur aut </div>
-                            <div class="news-info">
-                                5.9万次播放  ⋅ 167评论
-                            </div>
-                        </a>
-                        <a href="#" class="news-item">
-                            <div class="news-title">Lorem adipisicing elit. Consequuntur aut </div>
-                            <div class="news-info">
-                                8.9万次播放  ⋅ 3367评论
-                            </div>
-                        </a>
-                        <a href="#" class="news-item">
-                            <div class="news-title">Consectetur adipisicing elit. Consequuntur aut </div>
-                            <div class="news-info">
-                                5.9万次播放  ⋅ 167评论
-                            </div>
-                        </a>
-                        <a href="#" class="news-item">
-                            <div class="news-title">Lorem adipisicing elit. Consequuntur aut </div>
-                            <div class="news-info">
-                                8.9万次播放  ⋅ 3367评论
-                            </div>
-                        </a>
-                        <a href="#" class="news-item">
-                            <div class="news-title">Consectetur adipisicing elit. Consequuntur aut </div>
-                            <div class="news-info">
-                                5.9万次播放  ⋅ 167评论
-                            </div>
-                        </a>
-                        <a href="#" class="news-item">
-                            <div class="news-title">Lorem adipisicing elit. Consequuntur aut </div>
-                            <div class="news-info">
-                                8.9万次播放  ⋅ 3367评论
-                            </div>
-                        </a>
-                        <a href="#" class="news-item">
-                            <div class="news-title">Consectetur adipisicing elit. Consequuntur aut </div>
-                            <div class="news-info">
-                                5.9万次播放  ⋅ 167评论
-                            </div>
-                        </a>
-                        <a href="#" class="news-item">
-                            <div class="news-title">Lorem adipisicing elit. Consequuntur aut </div>
-                            <div class="news-info">
-                                8.9万次播放  ⋅ 3367评论
-                            </div>
-                        </a>
-                        <a href="#" class="news-item">
-                            <div class="news-title">Consectetur adipisicing elit. Consequuntur aut </div>
-                            <div class="news-info">
-                                5.9万次播放  ⋅ 167评论
-                            </div>
-                        </a>
-                        <a href="#" class="news-item">
-                            <div class="news-title">Lorem adipisicing elit. Consequuntur aut </div>
-                            <div class="news-info">
-                                8.9万次播放  ⋅ 3367评论
-                            </div>
-                        </a>
-                        <a href="#" class="news-item">
-                            <div class="news-title">Consectetur adipisicing elit. Consequuntur aut </div>
-                            <div class="news-info">
-                                5.9万次播放  ⋅ 167评论
-                            </div>
-                        </a>
-                        <a href="#" class="news-item">
-                            <div class="news-title">Lorem adipisicing elit. Consequuntur aut </div>
-                            <div class="news-info">
-                                8.9万次播放  ⋅ 3367评论
+                                [[${hotItem.likeNum}]]次点赞  ⋅ [[${hotItem.favNum}]]次收藏
                             </div>
                         </a>
                     </div>
@@ -658,7 +575,7 @@
 <!-- jQuery -->
 <script src="/vendor/jquery/jquery.min.js"></script>
 <script src="/dist/js/main.js"></script>
-<script src="/vendor/bootstrap/js/bootstrap.min.js"></script>
+<script src="/vendor/bootstrap/js/bootstrap.js"></script>
 <!-- Metis Menu Plugin JavaScript -->
 <script src="/vendor/metisMenu/metisMenu.min.js"></script>
 <!-- Custom Theme JavaScript -->

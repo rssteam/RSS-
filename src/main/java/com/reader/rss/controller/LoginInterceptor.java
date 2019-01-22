@@ -1,5 +1,6 @@
 package com.reader.rss.controller;
 
+import org.springframework.context.annotation.Configuration;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.servlet.HandlerInterceptor;
@@ -14,10 +15,12 @@ public class LoginInterceptor implements HandlerInterceptor {
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         HttpSession session=request.getSession();
         if (session.getAttribute("user")==null){
+//            request.getRequestDispatcher("/").forward(request,response);
+            System.out.println(request.getRequestURI()+"被拦截");
             response.sendRedirect("/");
             return false;
         }else {
-            session.setAttribute("user",session.getAttribute("user"));
+//            session.setAttribute("user",session.getAttribute("user"));
             return  true;
         }
 

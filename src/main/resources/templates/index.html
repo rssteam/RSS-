@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en"  xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>RSS关注你的订阅</title>
+    <link rel="shortcut icon" type="image/x-icon" href="/img/favicon.ico" />
+</head>
+<body >
+<script src="/vendor/jquery/jquery.min.js"></script>
+<link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" >
+<script src="/vendor/bootstrap/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="/dist/css/bootstrapValidator.css">
+<script src="/dist/js/bootstrapValidator.js"></script>
+<link rel="stylesheet" href="/dist/css/main2.css">
+
+<div class="login-wrap">
+    <div class="login-html">
+        <input id="tab-1" type="radio" name="tab" class="sign-in" checked><label for="tab-1" class="tab">Sign In</label>
+        <input id="tab-2" type="radio" name="tab" class="for-pwd"><label for="tab-2" class="tab">Register</label>
+        <div class="login-form ">
+            <form class="defaultForm"  action="/login" method="post"
+                  data-bv-message="This value is not valid"
+                  data-bv-feedbackicons-valid="glyphicon glyphicon-ok"
+                  data-bv-feedbackicons-invalid="glyphicon glyphicon-remove"
+                  data-bv-feedbackicons-validating="glyphicon glyphicon-refresh">
+                <div class="sign-in-htm">
+                    <div class="group form-group">
+                        <label th:text="${erromessage}"></label>
+                        <label for="account" class="label">Email</label>
+                        <input id="account" type="email"  class="input form-control" name="accountId" placeholder="Email"    required data-bv-notempty-message="请输入账号"  data-bv-emailaddress-message="请输入注册所用的Email">
+                    </div>
+                    <div class="group form-group">
+                        <label for="pass" class="label">Password</label>
+                        <input id="pass" type="password" class="input form-control"  name="pwd" placeholder="password" required data-bv-notempty-message="请输入密码" data-type="password">
+                    </div>
+                    <div class="group form-group">
+                        <input id="check" type="checkbox" class="check" checked>
+
+                        <label for="check"><span class="icon"></span> Remember Password</label>
+                    </div>
+                    <div class="group form-group">
+                        <input type="submit" class="button" value="Sign In">
+                    </div>
+                    <div class="hr"></div>
+                    <div class="foot-lnk">
+                        <label for="tab-2">Register</label>
+                    </div>
+                </div>
+            </form>
+            <form  class="defaultForm" action="/register" method="post"
+                   data-bv-message="This value is not valid"
+                   data-bv-feedbackicons-valid="glyphicon glyphicon-ok"
+                   data-bv-feedbackicons-invalid="glyphicon glyphicon-remove"
+                   data-bv-feedbackicons-validating="glyphicon glyphicon-refresh" >
+                <div class="for-pwd-htm">
+                    <div class="group form-group">
+                        <label th:text="${erromessage}"></label>
+                        <label for="email" class="label">Email</label>
+                        <input id="email" type="email"  class="input form-control "name="accountId"  placeholder="Email" required data-bv-notempty-message="请输入账号"    data-bv-emailaddress-message="请输入注册所用的Email">
+                    </div>
+                    <div class="group form-group">
+                        <label for="uname" class="label">Username</label>
+                        <input id="uname" type="text" class="input form-control" name="name" placeholder="Username" required data-bv-notempty-message="用户名不能为空" >
+                    </div>  <div class="group form-group">
+                    <label for="passw" class="label" >Password</label>
+                    <input id="passw"   type="password" class="input form-control"  placeholder="Password" name="pwd"
+                           required data-bv-notempty-message="密码不能为空">
+                </div>
+
+                    <div class="group">
+                        <input type="submit" class="button" value="Register">
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    $(document).ready(function() {
+        container: 'tooltip',
+            $('.defaultForm').bootstrapValidator();
+    })
+</script>
+</body>
+</html>

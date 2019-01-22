@@ -8,6 +8,7 @@ import com.reader.rss.service.rssservice.RssService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.DigestUtils;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.ui.Model;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -38,6 +39,8 @@ public class HomeController {
         model.addAttribute("userGroupSites",userGroupSites);
         List<Site> userAllsites=storageXml.getUserSites(user.getAccountId());
         model.addAttribute("userAllsites",userAllsites);
+        List<Item> allHotItems=rssService.getAllItems();
+        model.addAttribute("allHotItems",allHotItems);
         return "home";
     }
     @ResponseBody
@@ -77,9 +80,10 @@ public class HomeController {
        return tip;
 
     }
-    @RequestMapping("/login")
+    @RequestMapping(value = "/login",method = RequestMethod.POST)
     public   String  login(Model model,User user, RedirectAttributes redirectAttributes, HttpServletRequest request ){
-        List<User> users=rssService.login(user.getAccountId(),user.getPwd());
+        String pwd=DigestUtils.md5DigestAsHex(user.getPwd().getBytes());
+        List<User> users=rssService.login(user.getAccountId(),pwd);
         if (users.size()>1 || users.size()==0){
             model.addAttribute("erromessage","用户名或密码错误");
             return "index";
@@ -88,5 +92,35 @@ public class HomeController {
             session.setAttribute("user",users.get(0));
             return "redirect:/home";
         }
+    }
+    @RequestMapping(value = "/register",method = RequestMethod.POST)
+    public   String  register(Model model,User user, RedirectAttributes redirectAttributes, HttpServletRequest request ){
+        if(rssService.findByID(user.getAccountId())!= null){
+            model.addAttribute("erromessage","用户名已存在");
+            return "index";
+        }else {
+            String pwd = DigestUtils.md5DigestAsHex(user.getPwd().getBytes());
+            user.setPwd(pwd);
+            int registr=rssService.register(user);
+            if (registr!=1){
+                model.addAttribute("erromessage","注册失败");
+                return "index";
+            }else {
+                HttpSession session=request.getSession();
+                session.setAttribute("user",user);
+                return "redirect:/home";
+            }
+        }
+    }
+    @RequestMapping("/logout")
+    public   String  logout( HttpServletRequest request ) {
+        HttpSession session = request.getSession();
+        session.invalidate();
+        return  "index";
+    }
+    @RequestMapping("/profile")
+    public   String  profile( HttpServletRequest request ) {
+
+        return  "profile";
     }
 }

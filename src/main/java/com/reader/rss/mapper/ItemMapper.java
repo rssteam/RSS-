@@ -22,4 +22,5 @@ public interface ItemMapper {
     Item selectNewItem();
 
     List<Item> selectBysiteid(int siteid);
+    List<Item> selectAllItem();
 }
