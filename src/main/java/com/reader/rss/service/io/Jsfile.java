@@ -287,7 +287,7 @@ public class Jsfile implements IJsfile {
                 return res;
             }
         }
-        return "img/rssicon.jpg";
+        return "/img/rssicon.jpg";
     }
 
     @Override
