@@ -15,9 +15,10 @@ public interface UserGroupMapper {
 
     UserGroup selectByPrimaryKey(Integer groupId);
 
+    List< UserGroup> getByTitle(String groupTitle);
+
     int updateByPrimaryKeySelective(UserGroup record);
 
     int updateByPrimaryKey(UserGroup record);
     List<UserGroup> selectByUid(String accoutId);
-
 }

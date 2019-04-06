@@ -3,7 +3,9 @@ package com.reader.rss.service.resolvexml;
 import com.reader.rss.pojo.Item;
 import com.reader.rss.pojo.Site;
 import com.reader.rss.pojo.User;
+import com.reader.rss.pojo.UserGroup;
 
+import java.security.acl.Group;
 import java.util.List;
 import java.util.Map;
 
@@ -21,7 +23,8 @@ public interface IStorageXml {
     boolean removeUserFavItem(String uid,int itemid);//删除收藏的Item
     List<Site> getAllSite();//获取所有Sites
     String registerUser(User user);//用户注册
-    int subSite(String uid,int siteid,int groupid);//关注Site
+    int subSite(String uid,int siteid,int groupid);
+    int subSite(Site site, UserGroup group,String uid);//关注Site
     boolean favItem(String uid,int Itemid);//收藏Item
     Item updateItem(Item item);//更新Item
     User getUserInfo(String uid);//获取用户信息
