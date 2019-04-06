@@ -10,7 +10,7 @@ import org.springframework.context.annotation.Configuration;
 public class SeleniumConfig {
     @Bean
     public WebDriver Webdriver(){
-        System.setProperty("webdriver.chrome.driver","chromedriver.exe");
+        System.setProperty("webdriver.chrome.driver","chromedriver");
         return new ChromeDriver(new ChromeOptions().addArguments("--headless","--disable-gpu"));
     }
 }
