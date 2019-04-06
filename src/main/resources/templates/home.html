@@ -430,118 +430,35 @@
 
                     <!-- Page Features -->
                     <div class="row text-center" style="padding-bottom: 40px">
-                        <div class="col-md-2">
+                        <div class="col-md-2" th:each="site:${allSites}">
                             <div class="card" style="padding: 10px ;border: 0px">
                                 <img class="card-img-top img-circle " width="50" src="http://placehold.it/50x50" alt="">
                                 <div  style="padding: 5px">
-                                    <a href="#" class="card-link">简书创造属于你的快乐</a>
+                                    <a href="#" class="card-link" ><p style="height: 40px" th:text="${site.getSiteTitle()}" ></p></a>
                                 </div>
-                                <a href="#" class="btn btn-info">订阅</a>
+                                <a href="#" class="btn btn-info" th:id="'subs'+${site.getSiteId()}" onclick="subscribedefault(this)">订阅</a>
                             </div>
                         </div>
-                        <div class="col-md-2">
-                            <div class="card" style="padding: 10px ;border: 0px">
-                                <img class="card-img-top img-circle " width="50" src="http://placehold.it/50x50" alt="">
-                                <div  style="padding: 5px">
-                                    <a href="#" class="card-link">简书创造属于你的快乐</a>
-                                </div>
-                                <a href="#" class="btn btn-info">订阅</a>
-                            </div>
-                        </div>
-                        <div class="col-md-2">
-                            <div class="card" style="padding: 10px ;border: 0px">
-                                <img class="card-img-top img-circle " width="50" src="http://placehold.it/50x50" alt="">
-                                <div  style="padding: 5px">
-                                    <a href="#" class="card-link">简书创造属于你的快乐</a>
-                                </div>
-                                <a href="#" class="btn btn-info">订阅</a>
-                            </div>
-                        </div>
-                        <div class="col-md-2">
-                            <div class="card" style="padding: 10px ;border: 0px">
-                                <img class="card-img-top img-circle " width="50" src="http://placehold.it/50x50" alt="">
-                                <div  style="padding: 5px">
-                                    <a href="#" class="card-link">简书创造属于你的快乐</a>
-                                </div>
-                                <a href="#" class="btn btn-info">订阅</a>
-                            </div>
-                        </div>
-                        <div class="col-md-2">
-                            <div class="card" style="padding: 10px ;border: 0px">
-                                <img class="card-img-top img-circle " width="50" src="http://placehold.it/50x50" alt="">
-                                <div  style="padding: 5px">
-                                    <a href="#" class="card-link">简书创造属于你的快乐</a>
-                                </div>
-                                <a href="#" class="btn btn-info">订阅</a>
-                            </div>
-                        </div>
-                        <div class="col-md-2">
-                            <div class="card" style="padding: 10px ;border: 0px">
-                                <img class="card-img-top img-circle " width="50" src="http://placehold.it/50x50" alt="">
-                                <div  style="padding: 5px">
-                                    <a href="#" class="card-link">简书创造属于你的快乐</a>
-                                </div>
-                                <a href="#" class="btn btn-info">订阅</a>
-                            </div>
+                        <div>
+                            <tr>
+                                <td><label>订阅源网址</label><input type="text" id="sub-cus-url" name="url"></td>
+                                <td><label>网站名称</label><input type="text" id="sub-cus-title" name="title"></td>
+                                <a href="#" class="btn-info" id="sub-cus-site" value="自定义订阅" onclick="subscribeCusSite()"></a>
+                            </tr>
                         </div>
                     </div>
-                    <div class="row text-center" style="padding-bottom: 40px">
-                        <div class="col-md-2">
-                            <div class="card" style="padding: 10px ;border: 0px">
-                                <img class="card-img-top img-circle " width="50" src="http://placehold.it/50x50" alt="">
-                                <div  style="padding: 5px">
-                                    <a href="#" class="card-link">简书创造属于你的快乐</a>
-                                </div>
-                                <a href="#" class="btn btn-info">订阅</a>
-                            </div>
-                        </div>
-                        <div class="col-md-2">
-                            <div class="card" style="padding: 10px ;border: 0px">
-                                <img class="card-img-top img-circle " width="50" src="http://placehold.it/50x50" alt="">
-                                <div  style="padding: 5px">
-                                    <a href="#" class="card-link">简书创造属于你的快乐</a>
-                                </div>
-                                <a href="#" class="btn btn-info">订阅</a>
-                            </div>
-                        </div>
-                        <div class="col-md-2">
-                            <div class="card" style="padding: 10px ;border: 0px">
-                                <img class="card-img-top img-circle " width="50" src="http://placehold.it/50x50" alt="">
-                                <div  style="padding: 5px">
-                                    <a href="#" class="card-link">简书创造属于你的快乐</a>
-                                </div>
-                                <a href="#" class="btn btn-info">订阅</a>
-                            </div>
-                        </div>
-                        <div class="col-md-2">
-                            <div class="card" style="padding: 10px ;border: 0px">
-                                <img class="card-img-top img-circle " width="50" src="http://placehold.it/50x50" alt="">
-                                <div  style="padding: 5px">
-                                    <a href="#" class="card-link">简书创造属于你的快乐</a>
-                                </div>
-                                <a href="#" class="btn btn-info">订阅</a>
-                            </div>
-                        </div>
-                        <div class="col-md-2">
-                            <div class="card" style="padding: 10px ;border: 0px">
-                                <img class="card-img-top img-circle " width="50" src="http://placehold.it/50x50" alt="">
-                                <div  style="padding: 5px">
-                                    <a href="#" class="card-link">简书创造属于你的快乐</a>
-                                </div>
-                                <a href="#" class="btn btn-info">订阅</a>
-                            </div>
-                        </div>
-                        <div class="col-md-2">
-                            <div class="card" style="padding: 10px ;border: 0px">
-                                <img class="card-img-top img-circle " width="50" src="http://placehold.it/50x50" alt="">
-                                <div  style="padding: 5px">
-                                    <a href="#" class="card-link">简书创造属于你的快乐</a>
-                                </div>
-                                <a href="#" class="btn btn-info">订阅</a>
-                            </div>
-                        </div>
+                    <div>
+                        <tr>
+                            <select  id="group_select" name="selected-group" onchange="selectedGroup(this)" style="">
+                                <option th:each="group:${userGroups}" th:value="${group.groupId}"><p th:text="${group.groupTitle}"></p></option>
+                                <option value="custom">添加分组</option>
+                            </select>
+                        </tr>
+                        <tr>
+                            <input type="text" id="grouptitle" style="display:none" placeholder="请输入分组名称">
+                            <a href="#" class="btn-info" onclick="subCusGroup(this)"></a>
+                        </tr>
                     </div>
-
                 </div>
                 <div style=" width:300px;float:left;margin-left: 50px ;border-left: solid 1px #eeeeee ">
 
@@ -662,6 +579,61 @@
 <!-- Custom Theme JavaScript -->
 <script src="/dist/js/sb-admin-2.js"></script>
 <script  type="text/javascript" th:inline="javascript">
+    var subDction={};
+    var accountId=[[${user.accountId}]];
+    subDction['accountId']=accountId;
+    function subCusGroup(sub){
+        subDction['groupTitle']=this.closest("tr").find("input").val();
+        var accountId=[[${user.accountId}]];
+        $.ajax({
+            url:"/subscribe",
+            dataType:'json',
+            contentType: "application/json;charset=utf-8",
+            data:JSON.stringify(subDction),
+            type:"POST",
+            success:function(){
+                alert("订阅成功")
+            }
+
+        })
+
+    }
+    function selectedGroup(select){
+        var selection=select.value;
+        console.log(selection)
+        if(selection=="custom"){
+            // $("group_select").style.display="none";
+            $("#grouptitle").style.display="";
+        }else{
+                console.log("dfwdew");
+                subDction['groupId']=selection;
+
+                $.ajax({
+                    url:"/subscribe",
+                    dataType:'json',
+                    contentType: "application/json;charset=utf-8",
+                    data:JSON.stringify(subDction),
+                    type:"POST",
+                    success:function(){
+                        alert("订阅成功")
+                    }
+
+                })
+
+        }
+
+    }
+    function subscribedefault(siteId){
+        subDction['siteId']=siteId.id.substring(4,);
+        // $("#group_select").style.display="";
+
+    }
+    function subscribeCusSite(){
+        subDction['siteUrl']=$("#sub-cus-url").val;
+        subDction['siteTitle']=$("#sub-cus-title").val;
+        // $("#group_select").style.display="";
+
+    }
     function timeFn(d1) {//di作为一个变量传进来
         //如果时间格式是正确的，那下面这一步转化时间格式就可以不用了
         var dateBegin = new Date(d1);//将-转化为/，使用new Date

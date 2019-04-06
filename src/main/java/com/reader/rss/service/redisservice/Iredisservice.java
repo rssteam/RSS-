@@ -14,7 +14,7 @@ public interface Iredisservice {
 //    void setValue(String key,String value);
 //    void setValue(String key,Object value);
     void setValue(String key,String value,long time_s);//Site存储
-    void updateItemValue(List<Item> list,Site site);//更新某网站所有Item
+    void  updateItemValue(List<Item> list,Site site);//更新某网站所有Item
     boolean isExists(String key);//判断是否存在某Key，非集合
     <T> List<T> getMapWithoutUpdateExpire(String mapkey,Class<T> tClass);//获取某map集合所有cache,不更新
     <T> List<T> getMap(String mapkey,Class<T> tClass);//获取某map集合所有cache

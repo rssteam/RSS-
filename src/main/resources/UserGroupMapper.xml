@@ -73,4 +73,7 @@
   <select id="selectByUid" parameterType="java.lang.String" resultType="com.reader.rss.pojo.UserGroup">
     select *from usergroup where account_id = #{accountId}
   </select>
+  <select id="getByTitle" resultType="com.reader.rss.pojo.UserGroup">
+    select from usergroup where group_title=#{groupTitle}
+  </select>
 </mapper>

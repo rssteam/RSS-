@@ -11,6 +11,7 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 import java.io.RandomAccessFile;
+import java.security.acl.Group;
 import java.util.*;
 
 @Service
@@ -44,7 +45,7 @@ public class StorageXml implements IStorageXml {
         Site site = null;
         synchronized (siteList){
             if(siteList.size() > 0) {
-//                System.out.println("缓存中Site数目："+siteList.size());
+                System.out.println("缓存中Site数目："+siteList.size());
                 site = siteList.get(0);
                 siteList.remove(0);
             }
@@ -52,7 +53,7 @@ public class StorageXml implements IStorageXml {
         if(site != null) {
             List<Item> list = new ArrayList<>(convertXmltoItem(site.getSiteUrl()));
             synchronized (redisservice) {
-//                System.out.println("更新中...");
+                System.out.println("更新中...");
                 redisservice.updateItemValue(list, site);
             }
         }
@@ -184,6 +185,13 @@ public class StorageXml implements IStorageXml {
     @Override
     public int subSite(String uid, int siteid,int groupid){
         return subscribeMapper.insert(new Subscribe(null,siteid,groupid,uid));
+    }
+
+
+    @Override
+    public  int subSite(Site site, UserGroup group,String uid) {
+        return subscribeMapper.insert(new Subscribe(null,site.getSiteId(),group.getGroupId(),uid));
+
     }
 
     //收藏Item
