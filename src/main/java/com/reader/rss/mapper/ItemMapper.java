@@ -23,4 +23,6 @@ public interface ItemMapper {
 
     List<Item> selectBysiteid(int siteid);
     List<Item> selectAllItem();
+
+    List<Item> selectByHit();
 }

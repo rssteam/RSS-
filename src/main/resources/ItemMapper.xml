@@ -13,11 +13,12 @@
       <arg column="item_icon" javaType="java.lang.String" jdbcType="VARCHAR" />
       <arg column="item_des" javaType="java.lang.String" jdbcType="VARCHAR" />
       <arg column="item_pic" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="hit" javaType="java.lang.Integer" jdbcType="INTEGER" />
     </constructor>
   </resultMap>
   <sql id="Base_Column_List">
     item_id, item_title, item_url, site_id, fav_num, like_num, item_date, item_icon, 
-    item_des, item_pic
+    item_des, item_pic, hit
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
@@ -154,11 +155,14 @@
   </update>
   <select id="selectNewItem" resultType="com.reader.rss.pojo.Item">
   select *from item where item_id=(select max(item_id) from item)
-</select>
+  </select>
   <select id="selectBysiteid" resultType="com.reader.rss.pojo.Item">
     select * from item where site_id = #{siteid}
   </select>
   <select id="selectAllItem" resultType="com.reader.rss.pojo.Item">
     select * from item
+  </select>
+  <select id="selectByHit" resultType="com.reader.rss.pojo.Item">
+    select * from item ORDER BY hit DESC
   </select>
 </mapper>

@@ -23,6 +23,8 @@ public class Item {
 
     private String itemPic;
 
+    private Integer hit;
+
     @Override
     public String toString() {
         return "Item{" +
@@ -144,4 +146,7 @@ public class Item {
         this.itemPic = itemPic == null ? null : itemPic.trim();
     }
 
+    public Integer getHit() {
+        return hit;
+    }
 }
